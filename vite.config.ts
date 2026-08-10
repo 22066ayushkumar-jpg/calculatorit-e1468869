@@ -31,21 +31,40 @@ function autoSitemap() {
     name: "auto-sitemap",
     apply: "serve" as const,
     configureServer(server: {
+      middlewares: {
+        use: (fn: (req: { url?: string }, res: unknown, next: () => void) => void) => void;
+      };
       watcher: {
         add: (p: string) => void;
         on: (evt: string, cb: (file: string) => void) => void;
       };
     }) {
       run();
-      server.watcher.add(path.resolve(process.cwd(), "public"));
-      for (const evt of ["add", "unlink"]) {
+      const publicDir = path.resolve(process.cwd(), "public");
+      server.watcher.add(publicDir);
+      server.watcher.add(path.join(publicDir, "*.html"));
+      for (const evt of ["add", "unlink", "addDir", "unlinkDir"]) {
         server.watcher.on(evt, (file: string) => {
           if (isPage(file)) run();
         });
       }
+      // Safety net: some file-creation paths don't trigger the watcher, so
+      // always regenerate right before these files are served.
+      server.middlewares.use((req, _res, next) => {
+        const url = (req.url || "").split("?")[0];
+        if (
+          url === "/sitemap.xml" ||
+          url === "/calculators.json" ||
+          url === "/vehicles.html"
+        ) {
+          run();
+        }
+        next();
+      });
     },
   };
 }
+
 
 export default defineConfig({
   tanstackStart: {

@@ -81,3 +81,13 @@ for (const [code, name] of STATES) {
 const manifestOut = join(PUBLIC_DIR, "calculators.json");
 writeFileSync(manifestOut, JSON.stringify(calculators, null, 2) + "\n");
 console.log(`calculators.json written with ${Object.keys(calculators).length} states -> ${manifestOut}`);
+
+// ---------- keep hostinger-upload/ in sync (if it exists) ----------
+import { existsSync, copyFileSync } from "node:fs";
+const HOSTINGER_DIR = join(ROOT, "hostinger-upload");
+if (existsSync(HOSTINGER_DIR)) {
+  for (const f of ["sitemap.xml", "calculators.json"]) {
+    copyFileSync(join(PUBLIC_DIR, f), join(HOSTINGER_DIR, f));
+  }
+  console.log("synced sitemap.xml + calculators.json -> hostinger-upload/");
+}
