@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>New Mexico Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate New Mexico vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/new-mexico-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="New Mexico Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate New Mexico vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/new-mexico-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #nm-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #nm-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #nm-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #nm-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #nm-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #nm-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #nm-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #nm-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #nm-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #nm-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #nm-dmv-app h3.nm-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #nm-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #nm-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #nm-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #nm-dmv-app .fg input,#nm-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #nm-dmv-app .fg input:focus,#nm-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #nm-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #nm-dmv-app .pre{position:relative}
+  #nm-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #nm-dmv-app .pre input{padding-left:1.6rem}
+  
+  #nm-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #nm-dmv-app table.nm-fees{width:100%;border-collapse:collapse}
+  #nm-dmv-app table.nm-fees th,#nm-dmv-app table.nm-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #nm-dmv-app table.nm-fees .t-right{text-align:right}
+  #nm-dmv-app table.nm-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #nm-dmv-app .nm-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #nm-dmv-app .nm-note-box:empty{display:none;}
+  #nm-dmv-app .nm-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #nm-dmv-app .grid-row,
+    #nm-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #nm-dmv-app .dashboard-header { padding: 1.25rem; }
+    #nm-dmv-app .t-right { text-align: right; }
+    #nm-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>New Mexico Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Buying a car or renewing your plates in the Land of Enchantment? Our <strong>New Mexico vehicle registration fees calculator</strong> helps you estimate your total MVD checkout costs. In New Mexico, passenger vehicle registration is heavily based on weight tiers and the age of the vehicle [INDEX_1.1.1]. While the actual registration plates are quite cheap, you must pay a 4% Motor Vehicle Excise Tax (MVET) when you title a newly purchased car [INDEX_1.2.1, INDEX_1.2.3]. Use this tool to get an accurate breakdown of your weight-based fees, road use surcharges, and state taxes before visiting the MVD.</p>
+
+      <div id="nm-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated MVD checkout total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg & Title Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">MVET Excise Tax</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="nm-title">Vehicle Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="nmVehicleWeight">Vehicle Type & Weight</label>
+            <select id="nmVehicleWeight">
+              <option value="auto_light">Auto: Up to 2,000 lbs</option>
+              <option value="auto_mid">Auto: 2,001 - 3,000 lbs</option>
+              <option value="auto_heavy" selected>Auto: 3,001 lbs or More (Most SUVs/Cars)</option>
+              <option value="truck_light">Truck: Up to 4,000 lbs</option>
+              <option value="truck_mid">Truck: 4,001 - 6,000 lbs</option>
+              <option value="truck_heavy">Truck: 6,001 - 8,000 lbs</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="nmVehicleAge">Vehicle Age</label>
+            <select id="nmVehicleAge">
+              <option value="under_5">Less than 5 Years Old</option>
+              <option value="over_5">5 Years or Older</option>
+            </select>
+            <div class="hint">Registration fees decrease after a vehicle is 5 years old.</div>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="fg">
+            <label for="nmRegTerm">Registration Term</label>
+            <select id="nmRegTerm">
+              <option value="1">1-Year Registration</option>
+              <option value="2">2-Year Registration</option>
+            </select>
+            <div class="hint">New Mexico allows you to renew for up to 2 years at a time.</div>
+          </div>
+          <div class="fg">
+            <label for="nmTransactionType">Transaction Type</label>
+            <select id="nmTransactionType">
+              <option value="renewal">Annual Tag Renewal</option>
+              <option value="new_purchase">New Purchase (Title Transfer & Reg)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="nm-title">Purchase Details (MVET)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="nmPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="nmPurchasePrice" value="25000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="nmTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="nmTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Reduces your taxable amount [INDEX_1.2.3].</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg" style="grid-column: 1 / -1;">
+              <label for="nmLateTitle">Are you titling this vehicle more than 90 days late?</label>
+              <select id="nmLateTitle">
+                <option value="no">No</option>
+                <option value="yes">Yes (Incurs 50% MVET Penalty)</option>
+              </select>
+              <div class="hint">Failing to title within 90 days raises the tax rate from 4% to 6% [INDEX_1.2.1, INDEX_1.2.3].</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="nm-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="nm-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="nm-note-box" id="nmNote"></div>
+
+        <p class="nm-disclaimer">Estimate only. If you are buying a vehicle from a private party and your declared purchase price is unusually low, the state of New Mexico will calculate your 4% MVET using 80% of the vehicle's N.A.D.A. average trade-in value instead of the price you paid [INDEX_1.2.1, INDEX_1.2.3].</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in New Mexico?</h2>
+      <p>For standard passenger vehicles, New Mexico registration fees range from <strong>$27.00 to $62.00</strong> for a one-year registration, or <strong>$54.00 to $124.00</strong> for a two-year registration [INDEX_1.1.1, INDEX_1.1.2]. Trucks have a separate fee schedule and can cost up to $207.00 per year depending on weight [INDEX_1.1.1]. The total fee you pay at the MVD consists of a base weight fee and a mandatory bundle of road use administrative fees (covering tire recycling, insurance verification, and street beautification) [INDEX_1.3.1].</p>
+
+      <h2>What affects your New Mexico registration fee?</h2>
+      <ul>
+        <li><strong>Vehicle Weight:</strong> Heavier cars and trucks cause more road wear and are placed in higher registration fee brackets [INDEX_1.1.1]. A typical 4,000 lb SUV will cost significantly more to register than a compact 2,500 lb sedan.</li>
+        <li><strong>Vehicle Age:</strong> New Mexico rewards drivers for keeping older cars on the road. The yearly tag fee decreases noticeably once the vehicle is older than 5 years [INDEX_1.3.1].</li>
+        <li><strong>Motor Vehicle Excise Tax (MVET):</strong> If you are titling a vehicle for the first time in your name, you must pay a 4% MVET on the purchase price [INDEX_1.2.1, INDEX_1.2.3]. Fortunately, the value of any trade-in vehicle is deducted from the purchase price before the tax is calculated [INDEX_1.2.1, INDEX_1.2.3].</li>
+        <li><strong>Late Titling Penalties:</strong> If you accept a vehicle transfer but fail to apply for a title within 90 days, the state imposes a severe 50% penalty on your excise tax—effectively raising the rate from 4% to 6% [INDEX_1.2.1, INDEX_1.2.3].</li>
+      </ul>
+
+      <h2>How are registration fees calculated in New Mexico?</h2>
+      <p>The total MVD bill is calculated by taking your base weight tier, subtracting any age discounts, and adding standard administrative road fees [INDEX_1.1.1, INDEX_1.3.1].</p>
+      <ul>
+        <li><strong>Auto Weight Base (Example):</strong> Up to 2,000 lbs ($21.00); 2,001 - 3,000 lbs ($33.00); 3,001+ lbs ($56.00).</li>
+        <li><strong>Mandatory Add-ons:</strong> Admin Fee ($2.00) + Insurance Verification ($2.00) + Tire Recycling ($1.50) + Street Beautification ($0.50) = <strong>$6.00 Total Extra</strong> [INDEX_1.3.1].</li>
+        <li><em>Example:</em> A heavy auto (3,001+ lbs) pays the $56 base + $6 in add-ons for the maximum $62.00 passenger vehicle fee [INDEX_1.1.1, INDEX_1.3.1].</li>
+      </ul>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New SUV Purchase</strong> (Over 3,000 lbs, 1-Year, $35k Net Price)</td>
+            <td>$62 Reg + $10 Title + $1,400 MVET (4%)</td>
+            <td><strong>$1,472.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Used Truck Renewal</strong> (Under 6,000 lbs, 2-Year Term)</td>
+            <td>$55 Base + $6 Admin = $61/yr × 2 Years</td>
+            <td><strong>$122.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Older Sedan Renewal</strong> (Under 3,000 lbs, 1-Year)</td>
+            <td>Age discount drops fee to minimum range</td>
+            <td><strong>$39.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>Emissions Certificates:</strong> If you are a resident of Bernalillo County (Albuquerque area), you are required to obtain a passing emissions certificate of inspection before the MVD will allow you to renew your registration [INDEX_1.3.2].</li>
+        <li><strong>Electric Vehicle Surcharges:</strong> New Mexico is one of the few states that does not currently impose a special annual registration surcharge on Battery Electric Vehicles (BEVs) or Plug-in Hybrids (PHEVs), though legislative bills have been proposed to introduce fees ranging from $60 to $120 starting in 2027 [INDEX_2.2.2, INDEX_2.2.3, INDEX_2.2.4].</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in New Mexico?</summary>
+        <p>Registration fees for a passenger vehicle range from $27.00 to $62.00 for a one-year term, and from $54.00 to $124.00 for a two-year term, depending strictly on the vehicle's weight and age [INDEX_1.1.1, INDEX_1.1.2, INDEX_1.3.2].</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in New Mexico?</summary>
+        <p>This calculator is highly accurate for standard passenger cars and trucks under 8,000 lbs [INDEX_1.1.1, INDEX_1.3.1]. It does not calculate specific commercial motor carrier weight fees (for trucks up to 26,000+ lbs), motorcycle specifics, or off-highway vehicle (OHV) registrations [INDEX_1.1.1, INDEX_1.2.3].</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in New Mexico change every year?</summary>
+        <p>Your base registration fee will decrease slightly once the vehicle is older than five years [INDEX_1.3.1]. Otherwise, your renewal fee remains locked into your weight bracket [INDEX_1.1.1].</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in New Mexico?</summary>
+        <p>Yes. By selecting "New Purchase" you can estimate the 4% Motor Vehicle Excise Tax (MVET) alongside your weight-based registration fee [INDEX_1.2.1, INDEX_1.2.3, INDEX_1.3.1]. Be sure to include your trade-in allowance, as it legally lowers your taxable amount [INDEX_1.2.1, INDEX_1.2.3].</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in New Mexico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Registration fees for a passenger vehicle range from $27.00 to $62.00 for a one-year term, and from $54.00 to $124.00 for a two-year term, depending strictly on the vehicle's weight and age."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in New Mexico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator is highly accurate for standard passenger cars and trucks under 8,000 lbs. It does not calculate specific commercial motor carrier weight fees (for trucks up to 26,000+ lbs), motorcycle specifics, or off-highway vehicle (OHV) registrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in New Mexico change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your base registration fee will decrease slightly once the vehicle is older than five years. Otherwise, your renewal fee remains locked into your weight bracket."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in New Mexico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. By selecting \"New Purchase\" you can estimate the 4% Motor Vehicle Excise Tax (MVET) alongside your weight-based registration fee. Be sure to include your trade-in allowance, as it legally lowers your taxable amount."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    weight: document.getElementById('nmVehicleWeight'),
+    age: document.getElementById('nmVehicleAge'),
+    term: document.getElementById('nmRegTerm'),
+    transactionType: document.getElementById('nmTransactionType'),
+    purchasePrice: document.getElementById('nmPurchasePrice'),
+    tradeIn: document.getElementById('nmTradeIn'),
+    lateTitle: document.getElementById('nmLateTitle'),
+    
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('nmNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const wt = dom.weight.value;
+    const isOld = (dom.age.value === 'over_5');
+    const term = parseInt(dom.term.value) || 1;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const isLate = (dom.lateTitle.value === 'yes');
+
+    const isNew = (tType === 'new_purchase');
+    
+    // Toggle Purchase fields
+    dom.wrapPurchase.style.display = isNew ? 'block' : 'none';
+
+    // 1. Base Weight Registration
+    let baseReg = 0;
+    // Base before mandatory $6 admin/road fees
+    if (wt === 'auto_light') baseReg = 21.00;
+    else if (wt === 'auto_mid') baseReg = 33.00;
+    else if (wt === 'auto_heavy') baseReg = 56.00;
+    else if (wt === 'truck_light') baseReg = 34.00; // estimated drop
+    else if (wt === 'truck_mid') baseReg = 49.00;
+    else if (wt === 'truck_heavy') baseReg = 63.00;
+
+    // Apply age discount if older than 5 years (Approx $5-$10 off base)
+    if (isOld) {
+        if (wt.includes('auto')) baseReg = Math.max(15, baseReg - 8.00);
+        else baseReg = Math.max(25, baseReg - 12.00);
+    }
+
+    // Road Fees are flat $6 per year ($2 admin, $2 ins, $1.50 tire, $0.50 street)
+    const roadFees = 6.00;
+    
+    const annualTotalReg = baseReg + roadFees;
+    const totalReg = annualTotalReg * term;
+
+    // 2. Title Transfer Fees
+    let titleFee = 0;
+    if (isNew) {
+        titleFee = 10.00; // Transfer fee / Title printing
+    }
+
+    // 3. Motor Vehicle Excise Tax (MVET)
+    let mvetTotal = 0;
+    let taxableBase = 0;
+    let taxRate = 0.04; // 4% Standard
+    
+    if (isNew) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        if (isLate) {
+            taxRate = 0.06; // 50% penalty pushes it to 6%
+        }
+        mvetTotal = taxableBase * taxRate;
+    }
+
+    // Grouping
+    const regAndTitle = totalReg + titleFee;
+    const taxes = mvetTotal;
+    const grandTotal = regAndTitle + taxes;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndTitle);
+    dom.resTax.textContent = formatUSD(taxes);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow(`Base Weight Registration Fee ($${baseReg.toFixed(2)} × ${term} Yr)`, baseReg * term);
+    rows += addRow(`Mandatory MVD Road Fees ($6.00 × ${term} Yr)`, roadFees * term);
+    
+    if (titleFee > 0) {
+        rows += addRow(`Title Transfer / Issuance Fee`, titleFee);
+    }
+    
+    if (mvetTotal > 0) {
+        const rateLabel = isLate ? '6.0% (Late Titling Penalty Applied)' : '4.0%';
+        rows += `<tr><td>Motor Vehicle Excise Tax (MVET)<br><small style="color:#78786C">(${rateLabel} on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(mvetTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> New Mexico registration exactly matches weight classes. The age discount shown is an approximation built to hit the official statutory range limits ($27-$62). The calculated MVET of 4% strictly reflects the official Taxation and Revenue Department standard.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.weight, dom.age, dom.term, dom.transactionType, 
+      dom.purchasePrice, dom.tradeIn, dom.lateTitle
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
