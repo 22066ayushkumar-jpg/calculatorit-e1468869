@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>New Jersey Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate New Jersey vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/new-jersey-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="New Jersey Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate New Jersey vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/new-jersey-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #nj-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #nj-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #nj-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #nj-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #nj-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #nj-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #nj-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #nj-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #nj-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #nj-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #nj-dmv-app h3.nj-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #nj-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #nj-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #nj-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #nj-dmv-app .fg input,#nj-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #nj-dmv-app .fg input:focus,#nj-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #nj-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #nj-dmv-app .pre{position:relative}
+  #nj-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #nj-dmv-app .pre input{padding-left:1.6rem}
+  
+  #nj-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #nj-dmv-app table.nj-fees{width:100%;border-collapse:collapse}
+  #nj-dmv-app table.nj-fees th,#nj-dmv-app table.nj-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #nj-dmv-app table.nj-fees .t-right{text-align:right}
+  #nj-dmv-app table.nj-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #nj-dmv-app .nj-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #nj-dmv-app .nj-note-box:empty{display:none;}
+  #nj-dmv-app .nj-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #nj-dmv-app .grid-row,
+    #nj-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #nj-dmv-app .dashboard-header { padding: 1.25rem; }
+    #nj-dmv-app .t-right { text-align: right; }
+    #nj-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>New Jersey Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Registering a car in the Garden State? Our <strong>New Jersey vehicle registration fees calculator</strong> helps you estimate your total MVC checkout costs. New Jersey bases its standard passenger registration fees on a combination of the vehicle's unladen weight and its model year age. However, there are some unique rules: brand new vehicles require a mandatory 4-year upfront registration, and electric vehicles (EVs) are now subject to an escalating annual surcharge that reaches $270 in 2026. Use this tool to get an accurate breakdown of your state fees, EV charges, and sales tax.</p>
+
+      <div id="nj-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated MVC checkout total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg & Title Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Taxes & EV Fees</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="nj-title">Vehicle Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="njWeight">Vehicle Weight Class</label>
+            <select id="njWeight">
+              <option value="light">Under 2,700 lbs (Light Passenger)</option>
+              <option value="mid">2,700 - 3,800 lbs (Mid-size Passenger)</option>
+              <option value="heavy">Over 3,800 lbs (SUV / Heavy Passenger)</option>
+              <option value="motorcycle">Motorcycle</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="njAgeTerm">Vehicle Age & Reg Term</label>
+            <select id="njAgeTerm">
+              <option value="new_4yr">Brand New Vehicle (Mandatory 4-Year Reg)</option>
+              <option value="under_2yr">Under 2 Years Old (1-Year Renewal)</option>
+              <option value="over_2yr">2+ Years Old (1-Year Renewal)</option>
+            </select>
+            <div class="hint">NJ requires 4-year upfront registration for brand new vehicles.</div>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="fg">
+            <label for="njFuelType">Fuel / Powertrain Type</label>
+            <select id="njFuelType">
+              <option value="gas">Gas / Diesel / Standard Hybrid / PHEV</option>
+              <option value="ev">Battery Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">BEVs pay a $270 annual fee starting July 2026.</div>
+          </div>
+          <div class="fg">
+            <label for="njTransactionType">Transaction Type</label>
+            <select id="njTransactionType">
+              <option value="renewal">Annual Tag Renewal</option>
+              <option value="new_purchase">Title Transfer & Registration</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="nj-title">Purchase Details (Title & Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="njPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="njPurchasePrice" value="30000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="njTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="njTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">NJ deducts trade-ins before calculating sales tax.</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="njLien">Is there a Lien (Financing) on the vehicle?</label>
+              <select id="njLien">
+                <option value="0">No (Paid in full)</option>
+                <option value="1">Yes (1 Lien)</option>
+                <option value="2">Yes (2 Liens)</option>
+              </select>
+              <div class="hint">Title fee increases with recorded liens.</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="nj-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="nj-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="nj-note-box" id="njNote"></div>
+
+        <p class="nj-disclaimer">Estimate only. This calculator applies the 6.625% state sales tax to all non-exempt vehicles. Please note that New Jersey's former EV sales tax exemption has been completely phased out as of July 1, 2025, meaning electric vehicles purchased in 2026 are subject to the full state sales tax rate.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in New Jersey?</h2>
+      <p>Standard passenger vehicle registration in New Jersey typically ranges between <strong>$46.50 and $84.00 per year</strong> depending on the vehicle's weight and model year. However, if you are purchasing a brand new car, New Jersey requires a <strong>mandatory 4-year upfront registration</strong>, meaning your initial checkout fee will be four times the annual rate (e.g., up to $336 for a heavy SUV). If you drive a battery electric vehicle, you must also pay a new annual EV surcharge, which adds an additional $270 per year to your total in 2026.</p>
+
+      <h2>What affects your New Jersey registration fee?</h2>
+      <ul>
+        <li><strong>Vehicle Weight Class:</strong> The NJ Motor Vehicle Commission (MVC) uses three main weight classes for passenger cars: under 2,700 lbs, 2,700 - 3,800 lbs, and over 3,800 lbs. Heavier vehicles cost more.</li>
+        <li><strong>Vehicle Age:</strong> Vehicles under two years old pay a slightly higher base registration fee than vehicles older than two years.</li>
+        <li><strong>The 4-Year Mandate:</strong> Brand new passenger vehicles (never titled before) must pay for four years of registration upfront. This also applies to the EV fee, meaning a new EV buyer will pay $1,080 in EV fees at the time of purchase.</li>
+        <li><strong>Electric Vehicle Surcharge:</strong> Implemented recently to fund road maintenance, the annual BEV fee rises to $270 in July 2026. Plug-in hybrids (PHEVs) are exempt from this specific surcharge because they still pay gas tax.</li>
+        <li><strong>Sales Tax and Trade-Ins:</strong> New Jersey charges a statewide 6.625% sales tax on car purchases. If you have a trade-in, that value is deducted from the purchase price <em>before</em> the tax is calculated, reducing your overall bill.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in New Jersey?</h2>
+      <p>The calculation formula for passenger vehicles in NJ checks the weight class and age tier to determine the annual rate, and then multiplies it by the registration term (1 or 4 years). </p>
+      <ul>
+        <li><strong>Light (Under 2,700 lbs):</strong> $59 (< 2 yrs old) or $46.50 (2+ yrs old)</li>
+        <li><strong>Mid (2,700 - 3,800 lbs):</strong> $71.50 (< 2 yrs old) or $59.00 (2+ yrs old)</li>
+        <li><strong>Heavy (Over 3,800 lbs):</strong> $84.00 (< 2 yrs old) or $71.50 (2+ yrs old)</li>
+      </ul>
+      <p>If a new title is required, the MVC charges $60 for a clean title, $85 if one lien is recorded, and $110 for two liens.</p>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Brand New Gas SUV</strong> (Heavy, 4-Year Term, $40k Purchase, No Trade)</td>
+            <td>$336 Reg ($84 × 4) + $85 Title (1 Lien) + $2,650 Sales Tax</td>
+            <td><strong>$3,071.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Brand New Electric Car</strong> (Heavy, 4-Year Term)</td>
+            <td>$336 Reg + $1,080 EV Fee ($270 × 4) + Title + Sales Tax</td>
+            <td><strong>$1,416.00</strong> (Before Sales Tax)</td>
+          </tr>
+          <tr>
+            <td><strong>Used Sedan Renewal</strong> (Mid-Weight, 5 Years Old, 1-Year Term)</td>
+            <td>$59 Base Registration Fee</td>
+            <td><strong>$59.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>County/Municipal Fees:</strong> Certain NJ municipalities have special parking or local fees, though state registration is generally uniform.</li>
+        <li><strong>Specialty Plates:</strong> Dedicated license plates (e.g., sports teams, Shore Conservation, personalized tags) have a $50 initial fee and a $10 annual renewal fee on top of your base registration.</li>
+        <li><strong>Lease Taxes:</strong> If you are leasing instead of financing/buying, New Jersey calculates sales tax on the total sum of the lease payments rather than the total price of the car.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in New Jersey?</summary>
+        <p>A standard 1-year renewal for a passenger vehicle ranges from $46.50 to $84.00 based on its weight. However, brand new cars require a 4-year upfront payment, meaning your initial registration will cost between $236 and $336.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in New Jersey?</summary>
+        <p>This calculator is accurate for standard passenger cars, SUVs, and motorcycles. It does not calculate commercial vehicle fees (which are based on gross vehicle weight ratings up to 80,000 lbs) or commuter vans.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in New Jersey change every year?</summary>
+        <p>Your base registration fee will drop slightly once your vehicle becomes more than two years old. Additionally, if you drive a battery electric vehicle, the state mandated EV fee increases by $10 each July until it caps out at $290 in 2028.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in New Jersey?</summary>
+        <p>Yes. Just make sure to select "Brand New Vehicle (Mandatory 4-Year Reg)" if the car has never been titled before, so the calculator can accurately apply the 4-year multiplier. For a used car purchase, select "Under 2 Years Old" or "2+ Years Old" along with the "Title Transfer" transaction type.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in New Jersey?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard 1-year renewal for a passenger vehicle ranges from $46.50 to $84.00 based on its weight. However, brand new cars require a 4-year upfront payment, meaning your initial registration will cost between $236 and $336."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in New Jersey?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator is accurate for standard passenger cars, SUVs, and motorcycles. It does not calculate commercial vehicle fees (which are based on gross vehicle weight ratings up to 80,000 lbs) or commuter vans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in New Jersey change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your base registration fee will drop slightly once your vehicle becomes more than two years old. Additionally, if you drive a battery electric vehicle, the state mandated EV fee increases by $10 each July until it caps out at $290 in 2028."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in New Jersey?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Just make sure to select \"Brand New Vehicle (Mandatory 4-Year Reg)\" if the car has never been titled before, so the calculator can accurately apply the 4-year multiplier. For a used car purchase, select \"Under 2 Years Old\" or \"2+ Years Old\" along with the \"Title Transfer\" transaction type."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    weight: document.getElementById('njWeight'),
+    ageTerm: document.getElementById('njAgeTerm'),
+    fuelType: document.getElementById('njFuelType'),
+    transactionType: document.getElementById('njTransactionType'),
+    purchasePrice: document.getElementById('njPurchasePrice'),
+    tradeIn: document.getElementById('njTradeIn'),
+    lien: document.getElementById('njLien'),
+    
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('njNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const wt = dom.weight.value;
+    const ageTerm = dom.ageTerm.value;
+    const fType = dom.fuelType.value;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const liens = parseInt(dom.lien.value) || 0;
+
+    const isNew = (tType === 'new_purchase');
+    const isBrandNew4Yr = (ageTerm === 'new_4yr');
+    
+    // Toggle Purchase fields
+    dom.wrapPurchase.style.display = isNew ? 'block' : 'none';
+
+    // 1. Base Registration (1 Year Rates)
+    let annualReg = 0;
+    
+    if (wt === 'motorcycle') {
+        annualReg = 65.00; 
+    } else {
+        if (wt === 'light') {
+            annualReg = (ageTerm === 'over_2yr') ? 46.50 : 59.00;
+        } else if (wt === 'mid') {
+            annualReg = (ageTerm === 'over_2yr') ? 59.00 : 71.50;
+        } else if (wt === 'heavy') {
+            annualReg = (ageTerm === 'over_2yr') ? 71.50 : 84.00;
+        }
+    }
+
+    // Multiply by 4 if brand new passenger
+    const termMultiplier = isBrandNew4Yr ? 4 : 1;
+    const totalReg = annualReg * termMultiplier;
+
+    // 2. EV Surcharge (2026 rate = $270)
+    let evAnnual = 0;
+    if (fType === 'ev') {
+        evAnnual = 270.00;
+    }
+    const totalEV = evAnnual * termMultiplier;
+
+    // 3. Title Fees
+    let titleFee = 0;
+    if (isNew) {
+        if (liens === 0) titleFee = 60.00;
+        else if (liens === 1) titleFee = 85.00;
+        else if (liens >= 2) titleFee = 110.00;
+    }
+
+    // 4. State Sales Tax (6.625%)
+    let salesTaxTotal = 0;
+    let taxableBase = 0;
+    if (isNew) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        // EVs pay full sales tax in 2026
+        salesTaxTotal = taxableBase * 0.06625;
+    }
+
+    // Grouping
+    const regAndTitle = totalReg + titleFee;
+    const taxesAndEV = salesTaxTotal + totalEV;
+    const grandTotal = regAndTitle + taxesAndEV;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndTitle);
+    dom.resTax.textContent = formatUSD(taxesAndEV);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow(`Base Registration Fee (${termMultiplier}-Year Term)`, totalReg);
+    
+    if (totalEV > 0) {
+        rows += addRow(`BEV State Surcharge ($270/yr × ${termMultiplier})`, totalEV);
+    }
+    
+    if (titleFee > 0) {
+        const lienText = liens > 0 ? ` (with ${liens} Lien)` : ' (No Lien)';
+        rows += addRow(`Certificate of Title Fee${lienText}`, titleFee);
+    }
+    
+    if (salesTaxTotal > 0) {
+        rows += `<tr><td>State Sales Tax<br><small style="color:#78786C">(6.625% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(salesTaxTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> This calculator applies the mandatory 4-year registration multiplier required by the MVC for brand new vehicles. The 2026 BEV fee is applied at $270 per year, and the former electric vehicle sales tax exemption is no longer applied as it fully phases out in 2025.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.weight, dom.ageTerm, dom.fuelType, dom.transactionType, 
+      dom.purchasePrice, dom.tradeIn, dom.lien
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
