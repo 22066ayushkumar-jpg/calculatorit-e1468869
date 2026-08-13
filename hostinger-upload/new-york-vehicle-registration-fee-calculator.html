@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>New York Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate New York vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/new-york-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="New York Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate New York vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/new-york-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #ny-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #ny-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #ny-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #ny-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #ny-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #ny-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #ny-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #ny-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #ny-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #ny-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #ny-dmv-app h3.ny-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #ny-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #ny-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #ny-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #ny-dmv-app .fg input,#ny-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #ny-dmv-app .fg input:focus,#ny-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #ny-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #ny-dmv-app .pre{position:relative}
+  #ny-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #ny-dmv-app .pre input{padding-left:1.6rem}
+  
+  #ny-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #ny-dmv-app table.ny-fees{width:100%;border-collapse:collapse}
+  #ny-dmv-app table.ny-fees th,#ny-dmv-app table.ny-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #ny-dmv-app table.ny-fees .t-right{text-align:right}
+  #ny-dmv-app table.ny-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #ny-dmv-app .ny-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #ny-dmv-app .ny-note-box:empty{display:none;}
+  #ny-dmv-app .ny-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #ny-dmv-app .grid-row,
+    #ny-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #ny-dmv-app .dashboard-header { padding: 1.25rem; }
+    #ny-dmv-app .t-right { text-align: right; }
+    #ny-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>New York Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Are you buying a car or preparing to renew your plates in the Empire State? Our <strong>New York vehicle registration fees calculator</strong> helps you estimate your total DMV checkout costs. New York issues passenger registrations in 2-year increments and bases the core fee precisely on your vehicle's unladen weight. However, where you live heavily influences the final bill—residents in and around New York City must pay supplemental commuter (MCTD) and county use taxes. Use this tool to get an itemized breakdown of your title, weight fees, and local surcharges.</p>
+
+      <div id="ny-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated NY DMV checkout total (2-Year Term)</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg & Title Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Taxes & Local Surcharges</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="ny-title">Vehicle & Location Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="nyVehicleType">Vehicle Type</label>
+            <select id="nyVehicleType">
+              <option value="passenger">Passenger Vehicle / SUV / Light Truck</option>
+              <option value="motorcycle">Motorcycle</option>
+            </select>
+          </div>
+          <div class="fg" id="wrapWeight">
+            <label for="nyWeight">Unladen Weight (lbs)</label>
+            <input type="number" id="nyWeight" value="3500" min="0" step="1">
+            <div class="hint">Check your door jamb or registration. NY charges by the lb.</div>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="fg">
+            <label for="nyEngineType">Engine / Powertrain Detail</label>
+            <select id="nyEngineType">
+              <option value="standard">4-Cylinder or Standard Gas / Hybrid</option>
+              <option value="6cyl_or_ev">6+ Cylinders OR Electric Vehicle</option>
+            </select>
+            <div class="hint">NY mandates a $32.50 minimum fee for 6+ cylinders and EVs.</div>
+          </div>
+          <div class="fg">
+            <label for="nyCounty">County of Residence</label>
+            <select id="nyCounty">
+              <option value="nyc">New York City (5 Boroughs)</option>
+              <option value="nassau">Nassau County</option>
+              <option value="suffolk_westchester">Suffolk or Westchester County</option>
+              <option value="dutchess_putnam_rockland">Dutchess, Putnam, or Rockland County</option>
+              <option value="orange">Orange County</option>
+              <option value="other" selected>All Other NY Counties (Upstate / WNY)</option>
+            </select>
+            <div class="hint">Determines MCTD and local county use taxes.</div>
+          </div>
+        </div>
+
+        <h3 class="ny-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="nyTransactionType">Transaction Type</label>
+            <select id="nyTransactionType">
+              <option value="renewal">Annual Renewal Only (Keep Plates)</option>
+              <option value="new_new_plates">New Purchase (Title + New Plates)</option>
+              <option value="new_transfer_plates">New Purchase (Title + Transfer Old Plates)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="ny-title">Purchase Details (Title & Sales Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="nyPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="nyPurchasePrice" value="20000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="nyTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="nyTradeIn" value="0.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Lowers taxable amount. Enter 0 if none.</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg" style="grid-column: 1 / -1;">
+              <label for="nySalesTax">Combined State & Local Sales Tax Rate (%)</label>
+              <input type="number" id="nySalesTax" value="8.875" min="0" step="0.001">
+              <div class="hint">e.g., 8.875% in NYC, 8.625% in Nassau/Suffolk, 8.000% in Erie.</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="ny-title" style="margin-top: 1.5rem;">Itemized 2-Year Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="ny-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="ny-note-box" id="nyNote"></div>
+
+        <p class="ny-disclaimer">Estimate only. New York State charges bi-annual (2-year) registration fees. This calculator does not include the $37 state vehicle safety and emissions inspection fee, as that is paid directly to your local authorized mechanic/inspection station, not the DMV.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in New York?</h2>
+      <p>For most New Yorkers, passenger vehicle registrations are processed in two-year increments. The base state fee starts at <strong>$26.00</strong> for very light vehicles (under 1,650 lbs) and increases incrementally by roughly $1.50 for every 100 pounds. A typical 3,500 lb mid-size sedan will cost <strong>$56.50</strong> for a two-year base registration. However, your total checkout price is significantly increased by local County Use taxes, the Metropolitan Commuter Transportation District (MCTD) fee, and mandatory plate and titling fees if you are buying a new vehicle.</p>
+
+      <h2>What affects your New York registration fee?</h2>
+      <ul>
+        <li><strong>Vehicle Weight:</strong> The heavier your vehicle, the more you pay. The scale stops maxing out at 6,951+ lbs, capping the base fee at $140 for massive passenger trucks and SUVs.</li>
+        <li><strong>County of Residence:</strong> If you live within the 12 counties surrounding New York City (including NYC, Long Island, and the lower Hudson Valley), you are hit with a mandatory $50 MCTD fee for a 2-year tag.</li>
+        <li><strong>County Use Taxes:</strong> Individual counties assess their own "use tax" on top of the state fee. In the five boroughs of NYC, Nassau, Suffolk, and Westchester, this tax is between $30 and $60 per two years. Upstate counties generally charge a much smaller $10 or $20 use tax.</li>
+        <li><strong>Engine Size / Powertrain:</strong> New York enforces a $32.50 minimum 2-year fee for any vehicle with 6 or more cylinders, or for any Battery Electric Vehicle (BEV).</li>
+      </ul>
+
+      <h2>How are registration fees calculated in New York?</h2>
+      <p>The NYS DMV takes your unladen weight and matches it to an exact fee bracket. Then, it stacks on flat-rate administrative and regional fees:</p>
+      <ul>
+        <li><strong>Formula:</strong> <em>(Weight Bracket Base Fee) + (County Use Tax) + (MCTD Surcharge if applicable) + (Plate & Title Fees if buying new) + Sales Tax.</em></li>
+      </ul>
+      <p>If you are registering a newly purchased car, you must also pay a <strong>$50.00 Certificate of Title fee</strong>, a <strong>$25.00 New Plate fee</strong> (unless transferring old plates for $10), and your local sales tax on the vehicle's purchase price.</p>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sedan Renewal in Upstate NY</strong> (3,200 lbs, Erie County)</td>
+            <td>$52 Base Reg + $10 County Use Tax (No MCTD)</td>
+            <td><strong>$62.00</strong> (2-Year Term)</td>
+          </tr>
+          <tr>
+            <td><strong>SUV Renewal in NYC</strong> (4,500 lbs, Queens)</td>
+            <td>$81 Base Reg + $30 County Use Tax + $50 MCTD Fee</td>
+            <td><strong>$161.00</strong> (2-Year Term)</td>
+          </tr>
+          <tr>
+            <td><strong>New Car Purchase in Long Island</strong> ($20k Price, 3,500 lbs, Nassau)</td>
+            <td>$56.50 Base + $80 Regional Taxes + $75 Title/Plate + $1,725 Sales Tax</td>
+            <td><strong>$1,936.50</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li>Annual Vehicle Safety & Emissions Inspections (typically $37.00, paid directly to a private repair shop).</li>
+        <li>Specialty, personalized (vanity), or customized organizational license plate initial issuance and annual fees (usually ranges from $31.25 to $60.00+ on top of the base registration).</li>
+        <li>Highway Use Tax (HUT) or commercial gross weight fees for vehicles operating for-hire.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in New York?</summary>
+        <p>A standard two-year registration renewal typically costs between $60 and $160 depending strictly on how much the vehicle weighs and whether you live in a county that assesses the MCTD commuter tax.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in New York?</summary>
+        <p>This calculator precisely mimics the DMV's multi-tiered weight brackets for standard passenger vehicles and SUVs, as well as motorcycles. It does not calculate specific commercial plate fees, apportioned tractor-trailer fees, or boat/ATV registrations.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in New York change every year?</summary>
+        <p>Your base weight fee does not depreciate as the vehicle ages. Unless the state legislature votes to increase the fee schedule or regional taxes, the amount you pay to renew your 2-year registration today should be the exact same amount you pay in two years.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in New York?</summary>
+        <p>Yes. If you are buying a car (new or used), select "New Purchase" under the transaction type. This will allow you to calculate the required $50 title fee, your plate issuance fee, and exact state/local sales tax based on the purchase price.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in New York?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard two-year registration renewal typically costs between $60 and $160 depending strictly on how much the vehicle weighs and whether you live in a county that assesses the MCTD commuter tax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in New York?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator precisely mimics the DMV's multi-tiered weight brackets for standard passenger vehicles and SUVs, as well as motorcycles. It does not calculate specific commercial plate fees, apportioned tractor-trailer fees, or boat/ATV registrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in New York change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your base weight fee does not depreciate as the vehicle ages. Unless the state legislature votes to increase the fee schedule or regional taxes, the amount you pay to renew your 2-year registration today should be the exact same amount you pay in two years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in New York?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you are buying a car (new or used), select \"New Purchase\" under the transaction type. This will allow you to calculate the required $50 title fee, your plate issuance fee, and exact state/local sales tax based on the purchase price."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    vehicleType: document.getElementById('nyVehicleType'),
+    weight: document.getElementById('nyWeight'),
+    engineType: document.getElementById('nyEngineType'),
+    county: document.getElementById('nyCounty'),
+    transactionType: document.getElementById('nyTransactionType'),
+    purchasePrice: document.getElementById('nyPurchasePrice'),
+    tradeIn: document.getElementById('nyTradeIn'),
+    salesTax: document.getElementById('nySalesTax'),
+    
+    wrapWeight: document.getElementById('wrapWeight'),
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('nyNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  // Exact 2026 NYS DMV 2-Year Passenger Registration Fee Array (Increments of 100lbs starting >1650)
+  const nyFeeChart = [
+    26.00, 27.50, 29.00, 31.00, 32.50, 34.00, 35.50, 37.50, 39.00, 40.50, // Up to 2550
+    42.00, 43.50, 45.50, 47.00, 48.50, 50.00, 52.00, 53.50, 55.00, 56.50, // Up to 3550
+    59.00, 61.50, 64.00, 66.50, 69.00, 71.00, 73.50, 76.00, 78.50, 81.00, // Up to 4550
+    83.50, 85.50, 88.00, 90.50, 93.00, 95.50, 98.00, 100.50, 102.50, 105.00, // Up to 5550
+    107.50, 110.00, 112.50, 115.00, 117.00, 119.50, 122.00, 124.50, 127.00, 129.50, // Up to 6550
+    131.50, 134.00, 136.50, 139.00, 140.00 // Up to 6951+
+  ];
+
+  function getExactNYFee(weight) {
+    if (weight <= 1650) return 26.00;
+    if (weight > 6950) return 140.00;
+    
+    // Calculates exact bracket matching the NY MV-202 chart
+    let bracket = Math.ceil((weight - 1650) / 100); 
+    return nyFeeChart[Math.min(bracket, nyFeeChart.length - 1)];
+  }
+
+  function calculate() {
+    const vType = dom.vehicleType.value;
+    const wt = parseFloat(dom.weight.value) || 0;
+    const isSpecialEngine = (dom.engineType.value === '6cyl_or_ev');
+    const county = dom.county.value;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const taxRate = parseFloat(dom.salesTax.value) || 0;
+
+    const isPurchase = tType.startsWith('new_');
+    const isNewPlates = (tType === 'new_new_plates');
+    const isTransferPlates = (tType === 'new_transfer_plates');
+    
+    // UI Toggles
+    dom.wrapWeight.style.display = (vType === 'passenger') ? 'flex' : 'none';
+    dom.wrapPurchase.style.display = isPurchase ? 'block' : 'none';
+
+    // 1. Base Registration Fee
+    let baseReg = 0;
+    if (vType === 'motorcycle') {
+        baseReg = 35.00; // $17.50/yr * 2 years
+    } else {
+        baseReg = getExactNYFee(wt);
+        // Minimum $32.50 for 6+ cylinders or Electric Vehicles
+        if (isSpecialEngine && baseReg < 32.50) {
+            baseReg = 32.50;
+        }
+    }
+
+    // 2. County Use Tax & MCTD Fees
+    let countyFee = 0;
+    let mctdFee = 0;
+    const isHeavy = wt > 3500;
+
+    switch(county) {
+        case 'nyc': 
+            countyFee = 30.00; 
+            mctdFee = 50.00; 
+            break;
+        case 'nassau': 
+            countyFee = 30.00; 
+            mctdFee = 50.00; 
+            break;
+        case 'suffolk_westchester': 
+            countyFee = isHeavy ? 60.00 : 30.00; 
+            mctdFee = 50.00; 
+            break;
+        case 'dutchess_putnam_rockland': 
+            countyFee = isHeavy ? 20.00 : 10.00; 
+            mctdFee = 50.00; 
+            break;
+        case 'orange': 
+            countyFee = 0.00; 
+            mctdFee = 50.00; 
+            break;
+        case 'other': 
+            countyFee = isHeavy ? 20.00 : 10.00; 
+            mctdFee = 0.00; 
+            break;
+    }
+
+    // 3. Plate & Title Fees
+    let titleFee = 0;
+    let plateFee = 0;
+    let transferFee = 0;
+    
+    if (isPurchase) {
+        titleFee = 50.00;
+        if (isNewPlates) plateFee = 25.00;
+        if (isTransferPlates) transferFee = 10.00;
+    }
+
+    // 4. Sales Tax
+    let salesTaxTotal = 0;
+    let taxableBase = 0;
+    if (isPurchase) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        salesTaxTotal = taxableBase * (taxRate / 100);
+    }
+
+    // Grouping
+    const regAndTitle = baseReg + titleFee + plateFee + transferFee;
+    const taxesAndSurcharges = countyFee + mctdFee + salesTaxTotal;
+    const grandTotal = regAndTitle + taxesAndSurcharges;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndTitle);
+    dom.resTax.textContent = formatUSD(taxesAndSurcharges);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow('Base State Registration Fee (2-Year Term)', baseReg);
+    
+    if (mctdFee > 0) rows += addRow('MCTD Commuter Surcharge (2-Year Term)', mctdFee);
+    if (countyFee > 0) rows += addRow('County Supplemental Use Tax (2-Year Term)', countyFee);
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title Fee', titleFee);
+    if (plateFee > 0) rows += addRow('New License Plate Issuance', plateFee);
+    if (transferFee > 0) rows += addRow('License Plate Transfer Fee', transferFee);
+    
+    if (salesTaxTotal > 0) {
+        rows += `<tr><td>State & Local Sales / Use Tax<br><small style="color:#78786C">(${taxRate.toFixed(3)}% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(salesTaxTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> This calculator applies the exact weight brackets used by the NYS DMV for passenger vehicles. If you transfer plates from another vehicle (and they are still valid), the DMV prorates the un-used time towards your new registration; this calculator provides the standard, un-prorated 2-year estimate.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.vehicleType, dom.weight, dom.engineType, dom.county, 
+      dom.transactionType, dom.purchasePrice, dom.tradeIn, dom.salesTax
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
