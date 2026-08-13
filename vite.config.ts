@@ -24,8 +24,17 @@ function autoSitemap() {
       console.error("[auto-sitemap] failed:", err);
     }
   };
-  const isPage = (file: string) =>
-    file.replace(/\\/g, "/").includes("/public/") && file.endsWith(".html");
+  const publicDir = path.resolve(process.cwd(), "public");
+  const isPage = (file: string) => {
+    const absoluteFile = path.resolve(process.cwd(), file);
+    const relativeFile = path.relative(publicDir, absoluteFile);
+    return (
+      relativeFile !== "" &&
+      !relativeFile.startsWith("..") &&
+      !path.isAbsolute(relativeFile) &&
+      relativeFile.endsWith(".html")
+    );
+  };
 
   return {
     name: "auto-sitemap",
@@ -40,10 +49,9 @@ function autoSitemap() {
       };
     }) {
       run();
-      const publicDir = path.resolve(process.cwd(), "public");
       server.watcher.add(publicDir);
       server.watcher.add(path.join(publicDir, "*.html"));
-      for (const evt of ["add", "unlink", "addDir", "unlinkDir"]) {
+      for (const evt of ["add", "change", "unlink", "addDir", "unlinkDir"]) {
         server.watcher.on(evt, (file: string) => {
           if (isPage(file)) run();
         });
