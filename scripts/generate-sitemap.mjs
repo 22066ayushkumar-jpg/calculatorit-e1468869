@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Auto-generates public/sitemap.xml by scanning public/*.html.
 // Add a new HTML page under public/ and run `npm run sitemap` (or a build) — it's included automatically.
-import { readdirSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -82,12 +82,13 @@ const manifestOut = join(PUBLIC_DIR, "calculators.json");
 writeFileSync(manifestOut, JSON.stringify(calculators, null, 2) + "\n");
 console.log(`calculators.json written with ${Object.keys(calculators).length} states -> ${manifestOut}`);
 
-// ---------- keep hostinger-upload/ in sync (if it exists) ----------
-import { existsSync, copyFileSync } from "node:fs";
+// ---------- keep the complete Hostinger upload package in sync ----------
+// This mirrors every public file, not only the generated manifest files, so a
+// newly added/changed/removed calculator page is reflected in the deployment
+// package at the same time as the sitemap and Vehicle Hub manifest.
 const HOSTINGER_DIR = join(ROOT, "hostinger-upload");
 if (existsSync(HOSTINGER_DIR)) {
-  for (const f of ["sitemap.xml", "calculators.json"]) {
-    copyFileSync(join(PUBLIC_DIR, f), join(HOSTINGER_DIR, f));
-  }
-  console.log("synced sitemap.xml + calculators.json -> hostinger-upload/");
+  rmSync(HOSTINGER_DIR, { recursive: true, force: true });
+  cpSync(PUBLIC_DIR, HOSTINGER_DIR, { recursive: true });
+  console.log("synced complete public/ package -> hostinger-upload/");
 }

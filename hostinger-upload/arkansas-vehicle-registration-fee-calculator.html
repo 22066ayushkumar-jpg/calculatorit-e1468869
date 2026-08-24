@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Arkansas Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate Arkansas vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/arkansas-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="Arkansas Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate Arkansas vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/arkansas-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #ar-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #ar-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #ar-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #ar-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #ar-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #ar-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #ar-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #ar-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #ar-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #ar-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #ar-dmv-app h3.ar-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #ar-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #ar-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #ar-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #ar-dmv-app .fg input,#ar-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #ar-dmv-app .fg input:focus,#ar-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #ar-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #ar-dmv-app .pre{position:relative}
+  #ar-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #ar-dmv-app .pre input{padding-left:1.6rem}
+  
+  #ar-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #ar-dmv-app table.ar-fees{width:100%;border-collapse:collapse}
+  #ar-dmv-app table.ar-fees th,#ar-dmv-app table.ar-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #ar-dmv-app table.ar-fees .t-right{text-align:right}
+  #ar-dmv-app table.ar-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #ar-dmv-app .ar-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #ar-dmv-app .ar-note-box:empty{display:none;}
+  #ar-dmv-app .ar-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #ar-dmv-app .grid-row,
+    #ar-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #ar-dmv-app .dashboard-header { padding: 1.25rem; }
+    #ar-dmv-app .t-right { text-align: right; }
+    #ar-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>Arkansas Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Are you buying a car or renewing your plates in the Natural State? Our <strong>Arkansas vehicle registration fees calculator</strong> helps you estimate your total DFA checkout costs. While the base state fee in Arkansas is exceptionally low (based purely on unladen weight), alternative fuel vehicles face significant mandatory surcharges. Additionally, you must factor in your local county personal property tax—a requirement for every registration renewal. Use this tool to get an itemized breakdown of your state fees, EV surcharges, and sales tax before visiting your local Revenue Office.</p>
+
+      <div id="ar-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated DFA + Property Tax Total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">DFA Reg & State Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Property / Sales Tax</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="ar-title">Vehicle Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="arVehicleWeight">Vehicle Type & Weight</label>
+            <select id="arVehicleWeight">
+              <option value="pass_light">Passenger: 3,000 lbs or less ($17/yr)</option>
+              <option value="pass_mid">Passenger: 3,001 - 4,500 lbs ($25/yr)</option>
+              <option value="pass_heavy" selected>Passenger: 4,501+ lbs ($30/yr)</option>
+              <option value="truck">Pickup Truck: 1/2 or 3/4 ton ($21/yr)</option>
+              <option value="moto_heavy">Motorcycle: 250 CC or More ($7/yr)</option>
+              <option value="moto_light">Motorcycle: Less than 250 CC ($3/yr)</option>
+            </select>
+            <div class="hint">Base fee depends on unladen weight or engine CC.</div>
+          </div>
+          <div class="fg">
+            <label for="arFuelType">Powertrain / Fuel Type</label>
+            <select id="arFuelType">
+              <option value="gas">Gas / Diesel</option>
+              <option value="hybrid">Standard Hybrid (HEV)</option>
+              <option value="phev">Plug-in Hybrid (PHEV)</option>
+              <option value="ev">All-Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">HEVs, PHEVs, and EVs incur an annual state surcharge.</div>
+          </div>
+        </div>
+
+        <h3 class="ar-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="arTransactionType">Transaction Type</label>
+            <select id="arTransactionType">
+              <option value="renewal">Annual Tag Renewal</option>
+              <option value="new_plates">New Purchase (Title & New Plates)</option>
+              <option value="transfer_plates">New Purchase (Title & Transfer Old Plates)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="ar-title">Purchase Details (Title & Sales Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="arPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="arPurchasePrice" value="25000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="arTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="arTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Arkansas deducts trade-ins from your taxable amount.</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="arSalesTax">Combined State & Local Sales Tax (%)</label>
+              <input type="number" id="arSalesTax" value="6.500" min="0" step="0.001">
+              <div class="hint">State tax is 6.5%. Add any applicable city/county tax.</div>
+            </div>
+            <div class="fg">
+              <label for="arHasLien">Is there a Lien (Financing)?</label>
+              <select id="arHasLien">
+                <option value="no">No</option>
+                <option value="yes">Yes (Adds $0.50 Lien Fee)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="ar-title">County Property Tax (Required Annually)</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="arPropertyTax">Estimated Annual County Property Tax</label>
+            <div class="pre">
+              <span class="prefix">$</span>
+              <input type="number" id="arPropertyTax" value="350.00" min="0" step="0.01">
+            </div>
+            <div class="hint">Assessed by your local county collector. You must pay this before the DFA will process your registration.</div>
+          </div>
+        </div>
+
+        <h3 class="ar-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="ar-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="ar-note-box" id="arNote"></div>
+
+        <p class="ar-disclaimer">Estimate only. Arkansas mandates that vehicles purchased for less than $4,000 are exempt from the state sales tax. The county property tax is an annual local tax based on your vehicle's value and local millage rate; it is billed separately by your county, but is a mandatory prerequisite for state registration renewal.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in Arkansas?</h2>
+      <p>The base annual registration fee collected by the Arkansas Department of Finance and Administration (DFA) is very affordable, ranging strictly from <strong>$17.00 to $30.00</strong> based on the unladen weight of your passenger vehicle. The state also adds a $2.50 validation decal fee and a $0.50 postage fee for mail/online renewals. However, alternative fuel vehicles face significant annual surcharges, and every driver must pay a county personal property tax before the DFA allows them to renew.</p>
+
+      <h2>What affects your Arkansas registration fee?</h2>
+      <ul>
+        <li><strong>Vehicle Weight:</strong> Passenger cars weighing 3,000 lbs or less pay $17.00 per year. Vehicles between 3,001 and 4,500 lbs pay $25.00. Vehicles 4,501 lbs and over pay $30.00. Standard pickup trucks have a flat rate of $21.00.</li>
+        <li><strong>Alternative Fuel Surcharges:</strong> To offset declining gas tax revenues, Arkansas imposes a <strong>$200 annual fee</strong> for all-electric vehicles (BEVs). Plug-in hybrid electric vehicles (PHEVs) pay a <strong>$100 annual fee</strong>. Standard hybrids (HEVs) pay a <strong>$50 annual fee</strong>.</li>
+        <li><strong>State Sales Tax Threshold:</strong> If you are purchasing a vehicle with a net price of $4,000 or more, you must pay the state sales tax (6.5%). Vehicles sold for under $4,000 are completely exempt from the state sales tax portion.</li>
+        <li><strong>County Personal Property Tax:</strong> Required annually, this tax is assessed at 20% of your vehicle's NADA Clean Trade-In value, multiplied by the local millage rate. It is usually the largest ongoing expense for an Arkansas driver.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in Arkansas?</h2>
+      <p>The total checkout price for your Arkansas DFA transaction is calculated using the following basic formula:</p>
+      <ul>
+        <li><strong>(Base Weight Fee) + (Validation Decal: $2.50) + (Postage: $0.50) + (EV/Hybrid Surcharge if applicable)</strong>.</li>
+      </ul>
+      <p>If you are registering a newly purchased car, you must add the $10.00 Certificate of Title fee, a $0.50 lien filing fee if financed, and the combined sales tax on your net purchase price.</p>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Gas SUV Purchase</strong> (Over 4,501 lbs, $30,000 Net Price, Financed)</td>
+            <td>$30 Reg + $3 Decal/Postage + $10 Title + $0.50 Lien + $1,950 Tax (6.5%)</td>
+            <td><strong>$1,993.50</strong> (Plus county tax)</td>
+          </tr>
+          <tr>
+            <td><strong>Electric Vehicle Renewal</strong> (Under 4,500 lbs)</td>
+            <td>$25 Base Reg + $3 Decal/Postage + $200 BEV Surcharge</td>
+            <td><strong>$228.00</strong> (Plus county tax)</td>
+          </tr>
+          <tr>
+            <td><strong>Older Sedan Renewal</strong> (Under 3,000 lbs)</td>
+            <td>$17 Base Reg + $3 Decal/Postage</td>
+            <td><strong>$20.00</strong> (Plus county tax)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>Exact County Property Taxes:</strong> The property tax relies entirely on your specific county's millage rates and the vehicle's depreciating fair market value. It must be estimated.</li>
+        <li><strong>Local Sales Tax Caps:</strong> While the state sales tax is flat, local city and county sales taxes are often capped at a maximum of $25 per 1% of the local tax rate. This calculator provides a straightforward combined percentage approximation.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in Arkansas?</summary>
+        <p>The DFA registration fee for a passenger vehicle ranges from $17 to $30 annually, plus a $3 decal and postage fee. However, you must also pay a hefty county personal property tax before the DFA will allow you to renew.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in Arkansas?</summary>
+        <p>This calculator precisely maps standard passenger cars, light pickup trucks, and motorcycles. It does not calculate specific fees for commercial trucks (which range up to $1,350), farm trucks, mobile homes, or motorized bicycles.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in Arkansas change every year?</summary>
+        <p>Your base state registration fee is a flat rate based on unladen weight and does not depreciate over time. However, your county personal property tax bill will decrease annually as the vehicle depreciates in market value.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in Arkansas?</summary>
+        <p>Yes. If you are registering a newly acquired vehicle, select "New Purchase." This will calculate your mandatory $10 Title Fee and your exact sales tax based on the net purchase price. Remember, Arkansas exempts vehicles priced under $4,000 from state sales tax.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in Arkansas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The DFA registration fee for a passenger vehicle ranges from $17 to $30 annually, plus a $3 decal and postage fee. However, you must also pay a hefty county personal property tax before the DFA will allow you to renew."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in Arkansas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator precisely maps standard passenger cars, light pickup trucks, and motorcycles. It does not calculate specific fees for commercial trucks (which range up to $1,350), farm trucks, mobile homes, or motorized bicycles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in Arkansas change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your base state registration fee is a flat rate based on unladen weight and does not depreciate over time. However, your county personal property tax bill will decrease annually as the vehicle depreciates in market value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in Arkansas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you are registering a newly acquired vehicle, select \"New Purchase.\" This will calculate your mandatory $10 Title Fee and your exact sales tax based on the net purchase price. Remember, Arkansas exempts vehicles priced under $4,000 from state sales tax."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    weight: document.getElementById('arVehicleWeight'),
+    fuelType: document.getElementById('arFuelType'),
+    transactionType: document.getElementById('arTransactionType'),
+    purchasePrice: document.getElementById('arPurchasePrice'),
+    tradeIn: document.getElementById('arTradeIn'),
+    salesTax: document.getElementById('arSalesTax'),
+    hasLien: document.getElementById('arHasLien'),
+    propertyTax: document.getElementById('arPropertyTax'),
+    
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('arNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const vWeight = dom.weight.value;
+    const fType = dom.fuelType.value;
+    const tType = dom.transactionType.value;
+    const isLien = (dom.hasLien.value === 'yes');
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const taxRate = parseFloat(dom.salesTax.value) || 0;
+    const pTax = parseFloat(dom.propertyTax.value) || 0;
+
+    const isPurchase = tType.includes('new_');
+    const isTransfer = (tType === 'transfer_plates');
+    
+    // Toggle Visibility
+    dom.wrapPurchase.style.display = isPurchase ? 'block' : 'none';
+
+    // 1. Base Registration Fee
+    let baseRegAnnual = 0;
+    if (vWeight === 'pass_light') baseRegAnnual = 17.00;
+    else if (vWeight === 'pass_mid') baseRegAnnual = 25.00;
+    else if (vWeight === 'pass_heavy') baseRegAnnual = 30.00;
+    else if (vWeight === 'truck') baseRegAnnual = 21.00;
+    else if (vWeight === 'moto_heavy') baseRegAnnual = 7.00;
+    else if (vWeight === 'moto_light') baseRegAnnual = 3.00;
+
+    // Decal and Postage Fee
+    const decalFee = 2.50;
+    const postageFee = 0.50; 
+    const adminFees = decalFee + postageFee;
+
+    // 2. Alternative Fuel Surcharges
+    let evFeeAnnual = 0;
+    if (fType === 'ev') evFeeAnnual = 200.00;
+    else if (fType === 'phev') evFeeAnnual = 100.00;
+    else if (fType === 'hybrid') evFeeAnnual = 50.00;
+
+    // 3. Title, Transfer & Lien Fees
+    let titleFee = 0;
+    let lienFee = 0;
+    let transferFee = 0;
+
+    if (isPurchase) {
+        titleFee = 10.00; 
+        if (isLien) lienFee = 0.50; 
+        if (isTransfer) transferFee = 1.00;
+    }
+
+    // 4. State & Local Sales Tax
+    // Arkansas deducts trade-ins.
+    // Rule: Vehicles purchased for < $4,000 are exempt from state sales tax.
+    let salesTaxTotal = 0;
+    let taxableBase = 0;
+    if (isPurchase) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        
+        if (taxableBase >= 4000) {
+            salesTaxTotal = taxableBase * (taxRate / 100);
+        }
+    }
+
+    // Grouping
+    const regAndSurcharges = baseRegAnnual + adminFees + evFeeAnnual + titleFee + lienFee + transferFee;
+    const taxesAndProperty = salesTaxTotal + pTax;
+    const grandTotal = regAndSurcharges + taxesAndProperty;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndSurcharges);
+    dom.resTax.textContent = formatUSD(taxesAndProperty);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow(`Base DFA Registration Fee`, baseRegAnnual);
+    rows += addRow(`Validation Decal & Postage Fee`, adminFees);
+    
+    if (evFeeAnnual > 0) {
+        let evLabel = '';
+        if (fType === 'ev') evLabel = 'All-Electric (BEV) Surcharge';
+        else if (fType === 'phev') evLabel = 'Plug-In Hybrid (PHEV) Surcharge';
+        else if (fType === 'hybrid') evLabel = 'Standard Hybrid (HEV) Surcharge';
+        
+        rows += addRow(`${evLabel}`, evFeeAnnual);
+    }
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title Fee', titleFee);
+    if (lienFee > 0) rows += addRow('Lien Recording Fee', lienFee);
+    if (transferFee > 0) rows += addRow('License Plate Transfer Fee', transferFee);
+    
+    if (isPurchase) {
+        if (taxableBase < 4000) {
+            rows += `<tr><td>Vehicle Sales Tax<br><small style="color:#78786C">(Exempt: Net purchase price is under $4,000)</small></td><td class="t-right">$0.00</td></tr>`;
+        } else {
+            rows += `<tr><td>Vehicle Sales Tax<br><small style="color:#78786C">(${taxRate.toFixed(3)}% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(salesTaxTotal)}</td></tr>`;
+        }
+    }
+    
+    if (pTax > 0) rows += addRow('Estimated County Personal Property Tax (Billed Annually)', pTax);
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> Arkansas explicitly waives state sales taxes on vehicles purchased for a net value of less than $4,000. If your net purchase price (after trade-in) is below $4,000, this calculator applies the exemption automatically. Make sure to accurately input your county property tax, as it must be paid before you can receive your decals.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.weight, dom.fuelType, dom.transactionType, 
+      dom.purchasePrice, dom.tradeIn, dom.hasLien, dom.salesTax, dom.propertyTax
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

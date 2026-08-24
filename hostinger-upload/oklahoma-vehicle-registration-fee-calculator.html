@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Oklahoma Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate Oklahoma vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/oklahoma-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="Oklahoma Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate Oklahoma vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/oklahoma-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #ok-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #ok-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #ok-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #ok-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #ok-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #ok-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #ok-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #ok-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #ok-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #ok-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #ok-dmv-app h3.ok-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #ok-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #ok-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #ok-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #ok-dmv-app .fg input,#ok-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #ok-dmv-app .fg input:focus,#ok-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #ok-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #ok-dmv-app .pre{position:relative}
+  #ok-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #ok-dmv-app .pre input{padding-left:1.6rem}
+  
+  #ok-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #ok-dmv-app table.ok-fees{width:100%;border-collapse:collapse}
+  #ok-dmv-app table.ok-fees th,#ok-dmv-app table.ok-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #ok-dmv-app table.ok-fees .t-right{text-align:right}
+  #ok-dmv-app table.ok-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #ok-dmv-app .ok-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #ok-dmv-app .ok-note-box:empty{display:none;}
+  #ok-dmv-app .ok-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #ok-dmv-app .grid-row,
+    #ok-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #ok-dmv-app .dashboard-header { padding: 1.25rem; }
+    #ok-dmv-app .t-right { text-align: right; }
+    #ok-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>Oklahoma Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Are you buying a car or renewing your plates through Service Oklahoma? Our <strong>Oklahoma vehicle registration fees calculator</strong> helps you estimate your total tag agent checkout costs. Oklahoma utilizes a depreciation schedule for passenger vehicles, meaning your base tag fee drops automatically as the vehicle gets older. On top of standard registration, alternative fuel vehicles face heavy weight-based surcharges, and new purchases incur a 4.5% combined state vehicle excise and sales tax. Use this tool to get an itemized breakdown before visiting your local licensed operator.</p>
+
+      <div id="ok-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated Service OK / Tag Agent total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg & Title Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Excise & Sales Tax</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="ok-title">Vehicle Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="okVehicleAge">Vehicle Age (Registration Year)</label>
+            <select id="okVehicleAge">
+              <option value="1">Years 1 - 4 (Newer)</option>
+              <option value="5">Years 5 - 8</option>
+              <option value="9">Years 9 - 12</option>
+              <option value="13">Years 13 - 16</option>
+              <option value="17">17+ Years Old</option>
+            </select>
+            <div class="hint">OK registration fees drop over time.</div>
+          </div>
+          <div class="fg">
+            <label for="okPowertrain">Powertrain / Fuel Type</label>
+            <select id="okPowertrain">
+              <option value="gas">Gas / Diesel / Standard Hybrid</option>
+              <option value="phev">Plug-in Hybrid (PHEV)</option>
+              <option value="ev">All-Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">PHEVs and BEVs incur an annual DRIVE Act fee.</div>
+          </div>
+        </div>
+
+        <div class="grid-row" id="wrapWeight" style="display:none;">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="okWeight">Vehicle Weight (For EV/PHEV Surcharge)</label>
+            <select id="okWeight">
+              <option value="light">6,000 lbs or below</option>
+              <option value="heavy">6,001 lbs to 10,000 lbs</option>
+            </select>
+            <div class="hint">EV/PHEV fees scale based on gross vehicle weight.</div>
+          </div>
+        </div>
+
+        <h3 class="ok-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="okTransactionType">Transaction Type</label>
+            <select id="okTransactionType">
+              <option value="renewal">Annual Tag Renewal</option>
+              <option value="new_purchase">New Purchase (Title Transfer & Registration)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="ok-title">Purchase Details (State Excise & Sales Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="okPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="okPurchasePrice" value="25000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="okTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="okTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Lowers your taxable purchase amount.</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="ok-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="ok-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="ok-note-box" id="okNote"></div>
+
+        <p class="ok-disclaimer">Estimate only. While the base fee and excise taxes are standard, your local licensed operator (tag agency) may charge small, localized convenience fees for mail-in processing or credit card transactions.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in Oklahoma?</h2>
+      <p>In Oklahoma, your base passenger vehicle registration fee relies on a scheduled depreciation model. If you buy a brand new vehicle, your annual tag renewal starts at <strong>$96.00</strong> (plus a mandatory $1.50 insurance verification fee). However, the state rewards you for keeping the vehicle longer. Once the vehicle enters its 5th year, the rate drops to $86.00. It drops again in the 9th year ($66), the 13th year ($46), and maxes out at a low minimum of $26 per year once the vehicle is 17 years old.</p>
+
+      <h2>What affects your Oklahoma registration fee?</h2>
+      <ul>
+        <li><strong>Vehicle Age:</strong> The exact year your vehicle was manufactured dictates which of the five registration depreciation brackets you fall into.</li>
+        <li><strong>Powertrain and Weight:</strong> To make up for lost fuel taxes, Oklahoma imposes the DRIVE Act surcharge on alternative fuel vehicles. If your vehicle is 6,000 lbs or below, fully electric vehicles (BEVs) pay a $110 surcharge, and plug-in hybrids (PHEVs) pay $82. If the vehicle weighs between 6,001 and 10,000 lbs, those fees jump to $158 for BEVs and $118 for PHEVs.</li>
+        <li><strong>New Vehicle Taxes (Excise & Sales):</strong> When titling a newly purchased car, you must pay the Oklahoma Motor Vehicle Excise Tax (3.25%) combined with the State Motor Vehicle Sales Tax (1.25%), resulting in an effective 4.5% combined tax rate.</li>
+        <li><strong>The HB 1183 Law Change (July 2026):</strong> Taking effect on July 1, 2026, Oklahoma law HB 1183 simplifies the excise tax calculation. The state removes the old 20% average retail adjustments, meaning your excise tax is now calculated strictly on the <em>actual sales price</em> of the vehicle.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in Oklahoma?</h2>
+      <p>Service Oklahoma uses a straightforward formula for renewals: your bracketed age fee plus the $1.50 insurance verification fee. If you have an EV or PHEV, the weight-based surcharge is added.</p>
+      <p>If you are calculating a new purchase, you must factor in the <strong>$11 Title Fee</strong>, a <strong>$17 Transfer/Owner Change Fee</strong>, and the 4.5% combined tax on the net purchase price of the vehicle.</p>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Gas SUV</strong> (Year 1, $30,000 Net Purchase Price)</td>
+            <td>$97.50 Reg + $28 Title/Transfer + $1,350 Tax (4.5%)</td>
+            <td><strong>$1,475.50</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Electric Vehicle Renewal</strong> (Year 6, Under 6,000 lbs)</td>
+            <td>$87.50 Base Reg/Ins + $110 EV Surcharge</td>
+            <td><strong>$197.50</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Older Sedan Renewal</strong> (Year 14)</td>
+            <td>$46 Reg + $1.50 Insurance Fee</td>
+            <td><strong>$47.50</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>Iconic Oklahoma Plate Upgrades:</strong> Starting in September 2024, drivers have the option to upgrade to the new "Iconic Oklahoma" license plate. Doing so adds a $4 plate replacement fee during renewal, or $9 outside of renewal.</li>
+        <li><strong>Commercial & Farm Tags:</strong> This calculator applies to standard non-commercial passenger vehicles. Farm vehicles have heavily discounted flat rates (approx. $30), while heavy commercial vehicles scale over $1,000 depending on gross weight.</li>
+        <li><strong>Lien Processing Fees:</strong> If you finance your vehicle, the lender may require the tag agent to record a lien on the title, which carries an additional fee (typically around $10 to $15).</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in Oklahoma?</summary>
+        <p>A standard gas passenger vehicle registration ranges from a high of $96.00 for brand new cars down to just $26.00 for vehicles 17 years and older.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in Oklahoma?</summary>
+        <p>It is highly accurate for passenger cars, SUVs, and light trucks. It does not calculate specific fees for boats, outboard motors, manufactured homes, ATVs, or heavy commercial fleets.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in Oklahoma change every year?</summary>
+        <p>Yes, but in your favor! Oklahoma operates on a depreciation schedule, so your base vehicle registration fee will physically drop during the 5th, 9th, 13th, and 17th years of the vehicle's lifespan.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in Oklahoma?</summary>
+        <p>Yes. Simply select "New Purchase" to automatically calculate the mandatory $28 in title and transfer fees, along with the 4.5% combined state vehicle tax applied to your net purchase price.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in Oklahoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard gas passenger vehicle registration ranges from a high of $96.00 for brand new cars down to just $26.00 for vehicles 17 years and older."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in Oklahoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is highly accurate for passenger cars, SUVs, and light trucks. It does not calculate specific fees for boats, outboard motors, manufactured homes, ATVs, or heavy commercial fleets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in Oklahoma change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but in your favor! Oklahoma operates on a depreciation schedule, so your base vehicle registration fee will physically drop during the 5th, 9th, 13th, and 17th years of the vehicle's lifespan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in Oklahoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Simply select \"New Purchase\" to automatically calculate the mandatory $28 in title and transfer fees, along with the 4.5% combined state vehicle tax applied to your net purchase price."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    age: document.getElementById('okVehicleAge'),
+    powertrain: document.getElementById('okPowertrain'),
+    weight: document.getElementById('okWeight'),
+    transactionType: document.getElementById('okTransactionType'),
+    purchasePrice: document.getElementById('okPurchasePrice'),
+    tradeIn: document.getElementById('okTradeIn'),
+    
+    wrapWeight: document.getElementById('wrapWeight'),
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('okNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const age = parseInt(dom.age.value) || 1;
+    const pType = dom.powertrain.value;
+    const wType = dom.weight.value;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+
+    const isPurchase = (tType === 'new_purchase');
+    
+    // Toggle Visibility
+    dom.wrapPurchase.style.display = isPurchase ? 'block' : 'none';
+    dom.wrapWeight.style.display = (pType === 'ev' || pType === 'phev') ? 'flex' : 'none';
+
+    // 1. Base Registration Fee (Age Based)
+    let baseReg = 0;
+    if (age === 1) baseReg = 96.00;
+    else if (age === 5) baseReg = 86.00;
+    else if (age === 9) baseReg = 66.00;
+    else if (age === 13) baseReg = 46.00;
+    else if (age === 17) baseReg = 26.00;
+
+    const insFee = 1.50; // Mandatory Insurance Verification Fee
+
+    // 2. EV / PHEV Road Use Surcharge
+    let evFee = 0;
+    if (pType === 'ev') {
+        evFee = (wType === 'heavy') ? 158.00 : 110.00;
+    } else if (pType === 'phev') {
+        evFee = (wType === 'heavy') ? 118.00 : 82.00;
+    }
+
+    // 3. Title & Transfer Fees
+    let titleFee = 0;
+    let transferFee = 0;
+    if (isPurchase) {
+        titleFee = 11.00;
+        transferFee = 17.00; // Owner change fee
+    }
+
+    // 4. Combined State Vehicle Tax (4.5%)
+    // (3.25% Motor Vehicle Excise Tax + 1.25% Motor Vehicle Sales Tax)
+    let taxTotal = 0;
+    let taxableBase = 0;
+    if (isPurchase) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        taxTotal = taxableBase * 0.045; 
+    }
+
+    // Grouping
+    const regAndTitle = baseReg + insFee + evFee + titleFee + transferFee;
+    const taxes = taxTotal;
+    const grandTotal = regAndTitle + taxes;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndTitle);
+    dom.resTax.textContent = formatUSD(taxes);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow('Base Age-Bracket Registration Fee', baseReg);
+    rows += addRow('Insurance Verification Fee', insFee);
+    
+    if (evFee > 0) {
+        const evLabel = pType === 'ev' ? 'BEV Road Use Surcharge' : 'PHEV Road Use Surcharge';
+        rows += addRow(`${evLabel} (DRIVE Act)`, evFee);
+    }
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title Fee', titleFee);
+    if (transferFee > 0) rows += addRow('Owner Transfer Fee', transferFee);
+    
+    if (taxTotal > 0) {
+        rows += `<tr><td>Combined State Vehicle Tax (Excise + Sales)<br><small style="color:#78786C">(4.5% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(taxTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> The 4.5% tax reflects Oklahoma's standard 3.25% excise tax and 1.25% state sales tax combined. As per the passage of HB 1183 (effective July 2026), the calculation assumes the actual net sales price, skipping historical NADA adjustments.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.age, dom.powertrain, dom.weight, 
+      dom.transactionType, dom.purchasePrice, dom.tradeIn
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
