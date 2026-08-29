@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wyoming Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate Wyoming vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/wyoming-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="Wyoming Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate Wyoming vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/wyoming-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #wy-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #wy-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #wy-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #wy-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #wy-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #wy-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #wy-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #wy-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #wy-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #wy-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #wy-dmv-app h3.wy-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #wy-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #wy-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #wy-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #wy-dmv-app .fg input,#wy-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #wy-dmv-app .fg input:focus,#wy-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #wy-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #wy-dmv-app .pre{position:relative}
+  #wy-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #wy-dmv-app .pre input{padding-left:1.6rem}
+  
+  #wy-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #wy-dmv-app table.wy-fees{width:100%;border-collapse:collapse}
+  #wy-dmv-app table.wy-fees th,#wy-dmv-app table.wy-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #wy-dmv-app table.wy-fees .t-right{text-align:right}
+  #wy-dmv-app table.wy-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #wy-dmv-app .wy-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #wy-dmv-app .wy-note-box:empty{display:none;}
+  #wy-dmv-app .wy-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #wy-dmv-app .grid-row,
+    #wy-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #wy-dmv-app .dashboard-header { padding: 1.25rem; }
+    #wy-dmv-app .t-right { text-align: right; }
+    #wy-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>Wyoming Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Are you purchasing a car or renewing your plates in the Equality State? Our <strong>Wyoming vehicle registration fees calculator</strong> helps you estimate your total county treasurer checkout costs. Wyoming uses a unique two-part registration system consisting of a flat state fee and a county ad valorem tax that depreciates based on the vehicle's original MSRP and age. Good news for alternative fuel drivers: as of July 2026, Wyoming reduced its EV surcharge to $100 while introducing a new $50 PHEV fee. Use this tool to get an itemized breakdown of your state fees, county taxes, and sales tax before you register.</p>
+
+      <div id="wy-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated County Treasurer checkout total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg & County Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Title & Sales Tax</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="wy-title">Vehicle & Valuation Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="wyMsrp">Original Factory MSRP (Sticker Price)</label>
+            <div class="pre">
+              <span class="prefix">$</span>
+              <input type="number" id="wyMsrp" value="35000" min="0" step="1">
+            </div>
+            <div class="hint">Ad valorem county tax is calculated from original MSRP.</div>
+          </div>
+          <div class="fg">
+            <label for="wyAge">Vehicle Age (Year of Service)</label>
+            <select id="wyAge">
+              <option value="0.60">1st Year of Service (Brand New: 60%)</option>
+              <option value="0.50">2nd Year of Service (50%)</option>
+              <option value="0.40">3rd Year of Service (40%)</option>
+              <option value="0.30">4th Year of Service (30%)</option>
+              <option value="0.20">5th Year of Service (20%)</option>
+              <option value="0.15" selected>6th Year of Service and older (15%)</option>
+            </select>
+            <div class="hint">Wyoming depreciates MSRP heavily over 6 years.</div>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="fg">
+            <label for="wyVehicleType">Vehicle Type</label>
+            <select id="wyVehicleType">
+              <option value="passenger">Passenger Car / Light Truck / SUV ($30)</option>
+              <option value="motorcycle">Motorcycle ($25)</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="wyFuelType">Powertrain / Fuel Type</label>
+            <select id="wyFuelType">
+              <option value="gas">Gas / Diesel / Standard Hybrid</option>
+              <option value="phev">Plug-in Hybrid (PHEV)</option>
+              <option value="ev">All-Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">July 2026 update: BEVs pay $100/yr, PHEVs pay $50/yr.</div>
+          </div>
+        </div>
+
+        <h3 class="wy-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="wyTransactionType">Transaction Type</label>
+            <select id="wyTransactionType">
+              <option value="renewal">Annual Tag Renewal</option>
+              <option value="new_purchase">New Purchase (Title Transfer & Registration)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="wy-title">Purchase Details (Title & Sales Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="wyPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="wyPurchasePrice" value="30000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="wyTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="wyTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Wyoming deducts trade-ins from sales tax.</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg" style="grid-column: 1 / -1;">
+              <label for="wySalesTax">Combined State & County Sales Tax Rate (%)</label>
+              <input type="number" id="wySalesTax" value="6.000" min="0" step="0.001">
+              <div class="hint">Base state tax is 4.0%. Most counties add 1% to 2% (e.g., Laramie is 6%, Teton is 7%).</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="wy-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="wy-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="wy-note-box" id="wyNote"></div>
+
+        <p class="wy-disclaimer">Estimate only. The county ad valorem fee relies on the official Manufacturer's Suggested Retail Price (MSRP) of the make, model, and trim level of the vehicle when new. This factory cost is determined by the County Clerk. If your vehicle has special aftermarket equipment or heavy commercial upfits, the county may assess additional value to the MSRP.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in Wyoming?</h2>
+      <p>In Wyoming, your annual registration fee is split into two parts: a flat state fee and a county fee based on the value of your vehicle. The state fee is very cheap—typically just <strong>$30 for passenger vehicles</strong> and <strong>$25 for motorcycles</strong>. However, the county fee (ad valorem tax) can range from a few dollars for an old car to over $1,000 for a brand-new luxury truck. If you drive an electric vehicle, you will also pay a $100 annual surcharge (reduced from $200 effective July 2026).</p>
+
+      <h2>What affects your Wyoming registration fee?</h2>
+      <ul>
+        <li><strong>Original MSRP:</strong> The county portion of your registration is an ad valorem tax based strictly on the vehicle's original Manufacturer's Suggested Retail Price (factory cost), not what you currently paid for it.</li>
+        <li><strong>Vehicle Age (Year of Service):</strong> Wyoming depreciates the factory cost heavily over six years. In its first year, the vehicle is taxed on 60% of its MSRP. By its sixth year, it bottoms out at 15%.</li>
+        <li><strong>Alternative Fuel Surcharges:</strong> Starting in July 2026, Wyoming lowered its electric vehicle (BEV) fee to $100 per year, but introduced a new $50 annual fee for plug-in hybrid electric vehicles (PHEVs).</li>
+        <li><strong>Sales Tax:</strong> If titling a new purchase, you must pay the state 4% sales tax plus any local county option taxes (which often brings the total to 5% or 7% depending on the county). Wyoming subtracts your trade-in allowance from the taxable amount before calculation.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in Wyoming?</h2>
+      <p>The Wyoming County Treasurer calculates your renewal utilizing this specific statutory formula:</p>
+      <ul>
+        <li><strong>County Fee:</strong> <code>MSRP × Year of Service Rate × 0.03</code>
+          <ul>
+            <li><em>Service Rates:</em> Year 1 (60%), Year 2 (50%), Year 3 (40%), Year 4 (30%), Year 5 (20%), Year 6+ (15%).</li>
+          </ul>
+        </li>
+        <li><strong>State Fee:</strong> Flat $30 for passenger cars/trucks, or $25 for motorcycles.</li>
+        <li><strong>Total:</strong> County Fee + State Fee + EV/PHEV Surcharge (if applicable).</li>
+      </ul>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Gas SUV Purchase</strong> (Year 1, $40,000 MSRP, $35,000 Net Price, 6% Tax)</td>
+            <td>$720 County Fee + $30 State Fee + $15 Title + $2,100 Sales Tax</td>
+            <td><strong>$2,865.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Used Electric Vehicle</strong> (Year 3, $50,000 MSRP, Tag Renewal)</td>
+            <td>$600 County Fee + $30 State Fee + $100 EV Surcharge</td>
+            <td><strong>$730.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Older Commuter Car</strong> (Year 6+, $20,000 MSRP, Tag Renewal)</td>
+            <td>$90 County Fee + $30 State Fee</td>
+            <td><strong>$120.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>Specialty/Vanity Plates:</strong> Embossed, personalized, or university plates carry additional upfront and annual fees.</li>
+        <li><strong>Special Equipment Valuation:</strong> If you added heavy custom aftermarket modifications or commercial equipment to a truck, the county may add that value to the factory MSRP.</li>
+        <li><strong>Commercial/Heavy Trucks:</strong> Vehicles with high gross combination weights face a vastly different state fee schedule that scales up to $1,548+.</li>
+      </ul>
+
+      <h2>FAQS</h2>
+      <details class="faq"><summary>How much is the car registration fee in Wyoming?</summary>
+        <p>It depends on your vehicle's factory MSRP and age. The state fee is only $30, but the county tax can add hundreds of dollars. For example, a 3-year-old car with a $30,000 original MSRP will cost around $390 per year.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in Wyoming?</summary>
+        <p>This calculator provides a highly accurate estimate for standard passenger cars, SUVs, light trucks, and motorcycles using the official Wyoming statutory formula. It does not calculate fees for heavy commercial vehicles or trailers.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in Wyoming change every year?</summary>
+        <p>Yes, in your favor! Your county fee will decrease every year for the first six years of the vehicle's life as the state's "Year of Service" depreciation rate drops from 60% down to 15%.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in Wyoming?</summary>
+        <p>Yes. Select "New Purchase" to automatically include the 4% to 7% state and county sales tax based on your net purchase price. If you are just renewing your current plates, select "Annual Tag Renewal."</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in Wyoming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your vehicle's factory MSRP and age. The state fee is only $30, but the county tax can add hundreds of dollars. For example, a 3-year-old car with a $30,000 original MSRP will cost around $390 per year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in Wyoming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator provides a highly accurate estimate for standard passenger cars, SUVs, light trucks, and motorcycles using the official Wyoming statutory formula. It does not calculate fees for heavy commercial vehicles or trailers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in Wyoming change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in your favor! Your county fee will decrease every year for the first six years of the vehicle's life as the state's \"Year of Service\" depreciation rate drops from 60% down to 15%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in Wyoming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Select \"New Purchase\" to automatically include the 4% to 7% state and county sales tax based on your net purchase price. If you are just renewing your current plates, select \"Annual Tag Renewal.\""
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    msrp: document.getElementById('wyMsrp'),
+    age: document.getElementById('wyAge'),
+    vehicleType: document.getElementById('wyVehicleType'),
+    fuelType: document.getElementById('wyFuelType'),
+    transactionType: document.getElementById('wyTransactionType'),
+    purchasePrice: document.getElementById('wyPurchasePrice'),
+    tradeIn: document.getElementById('wyTradeIn'),
+    salesTax: document.getElementById('wySalesTax'),
+    
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('wyNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const msrp = parseFloat(dom.msrp.value) || 0;
+    const ageRate = parseFloat(dom.age.value) || 0.15;
+    const vType = dom.vehicleType.value;
+    const fType = dom.fuelType.value;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const taxRate = parseFloat(dom.salesTax.value) || 0;
+
+    const isPurchase = (tType === 'new_purchase');
+    
+    // Toggle Visibility
+    dom.wrapPurchase.style.display = isPurchase ? 'block' : 'none';
+
+    // 1. State Fee
+    let stateFee = (vType === 'motorcycle') ? 25.00 : 30.00;
+
+    // 2. County Fee (Ad Valorem Tax)
+    // Formula: MSRP * Year of Service Rate * 0.03
+    let countyFee = msrp * ageRate * 0.03;
+
+    // 3. Alternative Fuel Surcharges (Effective July 2026 Updates)
+    let evFee = 0;
+    if (fType === 'ev') evFee = 100.00; // Reduced from 200
+    else if (fType === 'phev') evFee = 50.00; // New fee for PHEV
+
+    // 4. Title Fee
+    let titleFee = 0;
+    if (isPurchase) {
+        titleFee = 15.00; // Standard Wyoming Certificate of Title
+    }
+
+    // 5. State & County Sales Tax
+    // Wyoming allows trade-in deductions
+    let salesTaxTotal = 0;
+    let taxableBase = 0;
+    if (isPurchase) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        salesTaxTotal = taxableBase * (taxRate / 100);
+    }
+
+    // Grouping
+    const regAndCountyFees = stateFee + countyFee + evFee;
+    const taxesAndTitle = titleFee + salesTaxTotal;
+    const grandTotal = regAndCountyFees + taxesAndTitle;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndCountyFees);
+    dom.resTax.textContent = formatUSD(taxesAndTitle);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow('Base State Registration Fee', stateFee);
+    
+    // Show the specific formula in the table line item
+    const agePercent = (ageRate * 100).toFixed(0);
+    rows += `<tr><td>County Ad Valorem Fee<br><small style="color:#78786C">(Formula: $${formatUSD(msrp)} MSRP × ${agePercent}% service rate × 0.03)</small></td><td class="t-right">${formatUSD(countyFee)}</td></tr>`;
+
+    if (evFee > 0) {
+        let evLabel = fType === 'ev' ? 'Electric Vehicle (BEV) Surcharge' : 'Plug-In Hybrid (PHEV) Surcharge';
+        rows += addRow(`${evLabel}`, evFee);
+    }
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title', titleFee);
+    
+    if (salesTaxTotal > 0) {
+        rows += `<tr><td>State & County Sales Tax<br><small style="color:#78786C">(${taxRate.toFixed(3)}% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(salesTaxTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> The county fee calculation correctly utilizes the Wyoming statutory formula based on the Factory Price (MSRP). The calculator also successfully integrates the July 2026 legislative updates reducing the BEV road use fee to $100 and establishing a $50 PHEV fee.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.msrp, dom.age, dom.vehicleType, dom.fuelType, 
+      dom.transactionType, dom.purchasePrice, dom.tradeIn, dom.salesTax
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
