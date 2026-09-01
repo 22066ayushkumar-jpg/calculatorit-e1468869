@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>South Carolina Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate South Carolina vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/south-carolina-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="South Carolina Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate South Carolina vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/south-carolina-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #sc-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #sc-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #sc-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #sc-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #sc-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #sc-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #sc-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #sc-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #sc-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #sc-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #sc-dmv-app h3.sc-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #sc-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #sc-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #sc-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #sc-dmv-app .fg input,#sc-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #sc-dmv-app .fg input:focus,#sc-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #sc-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #sc-dmv-app .pre{position:relative}
+  #sc-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #sc-dmv-app .pre input{padding-left:1.6rem}
+  
+  #sc-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #sc-dmv-app table.sc-fees{width:100%;border-collapse:collapse}
+  #sc-dmv-app table.sc-fees th,#sc-dmv-app table.sc-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #sc-dmv-app table.sc-fees .t-right{text-align:right}
+  #sc-dmv-app table.sc-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #sc-dmv-app .sc-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #sc-dmv-app .sc-note-box:empty{display:none;}
+  #sc-dmv-app .sc-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #sc-dmv-app .grid-row,
+    #sc-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #sc-dmv-app .dashboard-header { padding: 1.25rem; }
+    #sc-dmv-app .t-right { text-align: right; }
+    #sc-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>South Carolina Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Are you buying a car or renewing your tags in the Palmetto State? Our <strong>South Carolina vehicle registration fees calculator</strong> helps you estimate your total SCDMV checkout costs. South Carolina uniquely charges a flat biennial (two-year) registration fee that is extremely affordable. However, instead of a traditional sales tax, the state imposes a 5% Infrastructure Maintenance Fee (IMF) on purchases, which is strictly capped at $500. Most importantly, you must pay your county property tax before the DMV will issue your plates.</p>
+
+      <div id="sc-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Initial Estimate</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Total of SCDMV + County Property Tax</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">SCDMV Checkout (Reg & IMF)</div><div class="v" id="resDmv">$0.00</div></div>
+            <div class="dash-item"><div class="k">County Property Tax Est.</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="sc-title">Owner & Vehicle Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="scOwnerAge">Primary Owner Age / Status</label>
+            <select id="scOwnerAge">
+              <option value="under64">Under 64 Years Old</option>
+              <option value="age64">64 Years Old</option>
+              <option value="age65">65 or Older (or Disabled)</option>
+            </select>
+            <div class="hint">Seniors receive a discounted 2-year base rate.</div>
+          </div>
+          <div class="fg">
+            <label for="scPowertrain">Powertrain / Fuel Type</label>
+            <select id="scPowertrain">
+              <option value="gas">Gas / Diesel</option>
+              <option value="hybrid">Hybrid or Plug-in Hybrid (PHEV)</option>
+              <option value="ev">All-Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">EVs and hybrids pay a biennial road use surcharge.</div>
+          </div>
+        </div>
+
+        <h3 class="sc-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="scTransactionType">Transaction Type</label>
+            <select id="scTransactionType">
+              <option value="renewal">Biennial (2-Year) Tag Renewal</option>
+              <option value="new_sc">New Purchase in SC (Title & IMF)</option>
+              <option value="moving_sc">Moving to SC (Out-of-State Transfer)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="sc-title">Purchase Details (IMF Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="scPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="scPurchasePrice" value="30000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="scTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="scTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Lowers your taxable IMF amount.</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="sc-title">County Property Tax (Paid Separately)</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="scPropertyTax">Estimated Annual County Property Tax</label>
+            <div class="pre">
+              <span class="prefix">$</span>
+              <input type="number" id="scPropertyTax" value="450.00" min="0" step="0.01">
+            </div>
+            <div class="hint">You must pay this to your county treasurer before visiting the SCDMV.</div>
+          </div>
+        </div>
+
+        <h3 class="sc-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="sc-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Initial Estimate</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="sc-note-box" id="scNote"></div>
+
+        <p class="sc-disclaimer">Estimate only. This calculator provides the standard SCDMV fees and IMF caps. The exact personal property tax billed by your county relies heavily on the assessed fair market value of your vehicle and local millage rates, and must be paid before registration.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in South Carolina?</h2>
+      <p>The actual registration fee in South Carolina is one of the lowest in the country at just <strong>$40 every two years</strong> for standard passenger vehicles. Seniors receive small discounts, lowering the fee to $38 for 64-year-olds and $36 for those 65 or older. However, alternative fuel vehicles carry additional road use fees; battery electric vehicles pay a $120 biennial fee, while hybrids pay $60.</p>
+
+      <h2>What affects your South Carolina registration fee?</h2>
+      <ul>
+        <li><strong>Vehicle Owner's Age:</strong> Drivers who are 64, 65+, or disabled receive a discounted base registration rate.</li>
+        <li><strong>Alternative Fuel Types:</strong> To offset gas tax revenue, South Carolina charges an extra $120 for EVs and $60 for hybrids every two years.</li>
+        <li><strong>Infrastructure Maintenance Fee (IMF):</strong> When titling a newly purchased car, you must pay a 5% IMF on the vehicle's price. This fee is capped at a maximum of $500, making South Carolina very tax-friendly for expensive vehicles. If you are moving to SC from another state, the IMF is a flat $250.</li>
+        <li><strong>County Property Tax:</strong> You must pay an annual personal property tax to your county treasurer before you can register or renew your vehicle with the SCDMV. This is usually the largest ongoing expense, potentially reaching hundreds of dollars annually.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in South Carolina?</h2>
+      <p>The checkout formula for the SCDMV is:</p>
+      <ul>
+        <li><strong>(Biennial Registration Fee) + (Biennial EV/Hybrid Fee) + ($15 Title Fee if applicable) + (IMF if applicable)</strong>.</li>
+      </ul>
+      <p>Keep in mind that your county property tax must be paid prior to visiting the SCDMV, so it is technically a separate transaction billed by the county.</p>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Gas SUV Purchase</strong> ($35,000 Price, Standard Adult)</td>
+            <td>$40 Reg + $15 Title + $500 IMF (Capped)</td>
+            <td><strong>$555.00</strong> (Plus county tax)</td>
+          </tr>
+          <tr>
+            <td><strong>Used Hybrid Renewal</strong> (Standard Adult)</td>
+            <td>$40 Reg + $60 Hybrid Surcharge</td>
+            <td><strong>$100.00</strong> (Plus county tax)</td>
+          </tr>
+          <tr>
+            <td><strong>Moving to SC with EV</strong> (Age 65+)</td>
+            <td>$36 Reg + $120 EV Surcharge + $15 Title + $250 IMF</td>
+            <td><strong>$421.00</strong> (Plus county tax)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>County Property Taxes:</strong> While we offer an input for you to estimate your total budget, the exact property tax relies on your specific county's millage rates and the vehicle's fair market value.</li>
+        <li><strong>Gross Vehicle Weight Fees:</strong> Trucks over certain weights and commercial vehicles are subject to an entirely different GVW fee schedule, which can scale over $100.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in South Carolina?</summary>
+        <p>A standard passenger vehicle costs $40 every two years to register.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in South Carolina?</summary>
+        <p>This tool is accurate for standard passenger cars, light trucks under standard weight, and alternative fuel vehicles. It does not apply to heavy commercial vehicles, RVs, motorcycles ($10 fee), or utility trailers ($10 fee).</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in South Carolina change every year?</summary>
+        <p>The state's base registration fee is a flat rate that does not depreciate over time, remaining locked at $40 (or the senior rate) every two years. However, your county property tax bill will decrease annually as the vehicle depreciates in value.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in South Carolina?</summary>
+        <p>Yes. By selecting "New Purchase in SC", the calculator will apply the 5% Infrastructure Maintenance Fee, which functions as the state's vehicle sales tax. The calculator automatically caps this fee at the legal maximum of $500.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in South Carolina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard passenger vehicle costs $40 every two years to register."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in South Carolina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool is accurate for standard passenger cars, light trucks under standard weight, and alternative fuel vehicles. It does not apply to heavy commercial vehicles, RVs, motorcycles ($10 fee), or utility trailers ($10 fee)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in South Carolina change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The state's base registration fee is a flat rate that does not depreciate over time, remaining locked at $40 (or the senior rate) every two years. However, your county property tax bill will decrease annually as the vehicle depreciates in value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in South Carolina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. By selecting \"New Purchase in SC\", the calculator will apply the 5% Infrastructure Maintenance Fee, which functions as the state's vehicle sales tax. The calculator automatically caps this fee at the legal maximum of $500."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    ownerAge: document.getElementById('scOwnerAge'),
+    powertrain: document.getElementById('scPowertrain'),
+    transactionType: document.getElementById('scTransactionType'),
+    purchasePrice: document.getElementById('scPurchasePrice'),
+    tradeIn: document.getElementById('scTradeIn'),
+    propertyTax: document.getElementById('scPropertyTax'),
+    
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resDmv: document.getElementById('resDmv'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('scNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const age = dom.ownerAge.value;
+    const fType = dom.powertrain.value;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const pTax = parseFloat(dom.propertyTax.value) || 0;
+
+    const isNewSC = (tType === 'new_sc');
+    const isMoving = (tType === 'moving_sc');
+    
+    // Toggle Visibility for Purchase details
+    dom.wrapPurchase.style.display = isNewSC ? 'block' : 'none';
+
+    // 1. Base Registration Fee (Biennial)
+    let baseReg = 40.00;
+    if (age === 'age64') baseReg = 38.00;
+    else if (age === 'age65') baseReg = 36.00;
+
+    // 2. Alternative Fuel Surcharges (Biennial)
+    let evFee = 0;
+    if (fType === 'ev') evFee = 120.00;
+    else if (fType === 'hybrid') evFee = 60.00;
+
+    // 3. Title Fees
+    let titleFee = 0;
+    if (isNewSC || isMoving) {
+        titleFee = 15.00; 
+    }
+
+    // 4. Infrastructure Maintenance Fee (IMF)
+    let imfTotal = 0;
+    let taxableBase = 0;
+    
+    if (isNewSC) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        imfTotal = taxableBase * 0.05;
+        // Cap IMF at $500
+        if (imfTotal > 500) {
+            imfTotal = 500;
+        }
+    } else if (isMoving) {
+        imfTotal = 250.00; // Flat fee for out-of-state movers
+    }
+
+    // Grouping
+    const scdmvTotal = baseReg + evFee + titleFee + imfTotal;
+    const grandTotal = scdmvTotal + pTax;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resDmv.textContent = formatUSD(scdmvTotal);
+    dom.resTax.textContent = formatUSD(pTax);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow('Base Biennial Registration Fee (2-Year Term)', baseReg);
+    
+    if (evFee > 0) {
+        let evLabel = fType === 'ev' ? 'BEV Biennial Surcharge' : 'Hybrid/PHEV Biennial Surcharge';
+        rows += addRow(`${evLabel}`, evFee);
+    }
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title Fee', titleFee);
+    
+    if (imfTotal > 0) {
+        if (isMoving) {
+            rows += addRow('Out-of-State Infrastructure Maintenance Fee (IMF)', imfTotal);
+        } else {
+            rows += `<tr><td>Infrastructure Maintenance Fee (IMF)<br><small style="color:#78786C">(5.0% on $${formatUSD(taxableBase)} net purchase; Max Cap $500)</small></td><td class="t-right">${formatUSD(imfTotal)}</td></tr>`;
+        }
+    }
+    
+    if (pTax > 0) rows += addRow('Estimated County Property Tax (Billed Separately)', pTax);
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> The Infrastructure Maintenance Fee (IMF) accurately caps at $500 for vehicles purchased within South Carolina, and correctly defaults to the $250 flat fee for out-of-state transfers. Remember that property taxes must be paid to your county treasurer before you can finalize your SCDMV registration.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.ownerAge, dom.powertrain, dom.transactionType, 
+      dom.purchasePrice, dom.tradeIn, dom.propertyTax
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
