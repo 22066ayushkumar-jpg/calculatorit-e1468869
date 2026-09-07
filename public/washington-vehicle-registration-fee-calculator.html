@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Washington Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate Washington vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/washington-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="Washington Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate Washington vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/washington-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #wa-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #wa-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #wa-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #wa-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #wa-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #wa-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #wa-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #wa-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #wa-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #wa-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #wa-dmv-app h3.wa-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #wa-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #wa-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #wa-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #wa-dmv-app .fg input,#wa-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #wa-dmv-app .fg input:focus,#wa-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #wa-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #wa-dmv-app .pre{position:relative}
+  #wa-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #wa-dmv-app .pre input{padding-left:1.6rem}
+  
+  #wa-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #wa-dmv-app table.wa-fees{width:100%;border-collapse:collapse}
+  #wa-dmv-app table.wa-fees th,#wa-dmv-app table.wa-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #wa-dmv-app table.wa-fees .t-right{text-align:right}
+  #wa-dmv-app table.wa-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #wa-dmv-app .wa-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #wa-dmv-app .wa-note-box:empty{display:none;}
+  #wa-dmv-app .wa-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #wa-dmv-app .grid-row,
+    #wa-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #wa-dmv-app .dashboard-header { padding: 1.25rem; }
+    #wa-dmv-app .t-right { text-align: right; }
+    #wa-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>Washington Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Are you purchasing a car or renewing your tags in the Evergreen State? Our <strong>Washington vehicle registration fees calculator</strong> helps you estimate your total DOL checkout costs. While Washington's base state tab fee is relatively low, your final bill is heavily determined by regional taxes. Residents within the Sound Transit district must pay a 1.1% value-based RTA excise tax, and local cities often add Transportation Benefit District (TBD) fees. Use this tool to get an itemized breakdown of your state fees, EV surcharges, RTA taxes, and sales tax before visiting the licensing office.</p>
+
+      <div id="wa-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated WA DOL checkout total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg, RTA & Local Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Title & Sales Tax</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="wa-title">Vehicle Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="waWeight">Vehicle Weight</label>
+            <select id="waWeight">
+              <option value="10">Under 4,000 lbs (Most Sedans)</option>
+              <option value="30">4,001 - 6,000 lbs (SUVs / Minivans)</option>
+              <option value="50">6,001 - 8,000 lbs (Heavy Trucks)</option>
+            </select>
+            <div class="hint">Washington assesses a weight-based fee.</div>
+          </div>
+          <div class="fg">
+            <label for="waFuelType">Powertrain / Fuel Type</label>
+            <select id="waFuelType">
+              <option value="gas">Gas / Diesel</option>
+              <option value="hybrid">Standard Hybrid / PHEV</option>
+              <option value="ev">All-Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">EVs/Hybrids incur heavy road usage surcharges.</div>
+          </div>
+        </div>
+
+        <h3 class="wa-title">Regional Taxes (RTA & TBD)</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="waRta">Do you live in the Sound Transit (RTA) District?</label>
+            <select id="waRta">
+              <option value="no">No (Outside RTA boundaries)</option>
+              <option value="yes">Yes (Parts of King, Pierce, & Snohomish Counties)</option>
+            </select>
+            <div class="hint">RTA applies a 1.1% Motor Vehicle Excise Tax.</div>
+          </div>
+        </div>
+        
+        <div class="grid-row" id="wrapRta" style="display:none; background: rgba(193,140,93,.05); padding: 1rem; border-radius: 12px; margin-bottom: .6rem; border: 1px solid rgba(193,140,93,.2);">
+          <div class="fg">
+            <label for="waMsrp">Original MSRP (Sticker Price)</label>
+            <div class="pre">
+              <span class="prefix">$</span>
+              <input type="number" id="waMsrp" value="35000" min="0" step="1">
+            </div>
+            <div class="hint">RTA tax is calculated from original MSRP.</div>
+          </div>
+          <div class="fg">
+            <label for="waAge">Vehicle Age (Years)</label>
+            <select id="waAge">
+              <option value="0">Brand New (Year 1: 100%)</option>
+              <option value="1">1 Year Old (Year 2: 90%)</option>
+              <option value="2">2 Years Old (Year 3: 83%)</option>
+              <option value="3">3 Years Old (Year 4: 75%)</option>
+              <option value="4">4 Years Old (Year 5: 67%)</option>
+              <option value="5">5 Years Old (Year 6: 59%)</option>
+              <option value="6">6 Years Old (Year 7: 52%)</option>
+              <option value="7">7 Years Old (Year 8: 44%)</option>
+              <option value="8">8 Years Old (Year 9: 36%)</option>
+              <option value="9">9 Years Old (Year 10: 28%)</option>
+              <option value="10">10 Years Old (Year 11: 21%)</option>
+              <option value="11">11 Years Old (Year 12: 15%)</option>
+              <option value="12">12+ Years Old (Year 13+: 10%)</option>
+            </select>
+            <div class="hint">RTA depreciates over 12 years.</div>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="waTbd">Local City TBD Fee (Transportation Benefit District)</label>
+            <select id="waTbd">
+              <option value="0">$0.00 (No City TBD Fee)</option>
+              <option value="20">$20.00 (e.g., Spokane, Wenatchee)</option>
+              <option value="40">$40.00 (e.g., Olympia)</option>
+              <option value="50" selected>$50.00 (e.g., Seattle, Vancouver, Everett)</option>
+            </select>
+            <div class="hint">Many cities add a local street maintenance fee.</div>
+          </div>
+        </div>
+
+        <h3 class="wa-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="waTransactionType">Transaction Type</label>
+            <select id="waTransactionType">
+              <option value="renewal">Annual Tab Renewal</option>
+              <option value="new_purchase">New Purchase / Ownership Transfer</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="wa-title">Purchase Details (Title & Sales Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="waPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="waPurchasePrice" value="25000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="waTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="waTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Washington deducts trade-ins from sales tax.</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg" style="grid-column: 1 / -1;">
+              <label for="waSalesTax">Combined State & Local Vehicle Sales Tax (%)</label>
+              <input type="number" id="waSalesTax" value="10.300" min="0" step="0.001">
+              <div class="hint">Includes WA 6.5% base + local rate + 0.3% motor vehicle tax (avg ~10.3% in metro areas).</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="wa-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="wa-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="wa-note-box" id="waNote"></div>
+
+        <p class="wa-disclaimer">Estimate only. RTA tax relies on the official DOL MSRP valuation, which may slightly differ from your dealer window sticker. While this calculator uses the precise 2026 state filing fees and RTA depreciation schedule, local county auditors may assess minor subagent fees during checkout.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in Washington?</h2>
+      <p>Washington state registration fees are highly localized. While the core statewide base fees are relatively inexpensive (roughly $60 for a standard passenger car), your final checkout price can be hundreds of dollars higher based on where you live and what you drive. Residents in the Sound Transit (RTA) district must pay a 1.1% excise tax based on their vehicle's value, and electric vehicles incur a $225 annual surcharge. Because of this, an annual renewal could cost as little as $60 in rural areas or over $700 for a new EV in Seattle.</p>
+
+      <h2>What affects your Washington registration fee?</h2>
+      <ul>
+        <li><strong>Base Tab & Filing Fees:</strong> The basic state license tab fee is $43.25. In 2026, the mandatory filing fee increased to $6.00. Minor service and technology fees add another $1.00.</li>
+        <li><strong>Vehicle Weight:</strong> Passenger vehicles incur an additional weight-based fee. Lighter cars pay $10.00, while heavier SUVs and trucks scale upwards.</li>
+        <li><strong>RTA Excise Tax:</strong> If you live in the Sound Transit district (covering dense parts of King, Pierce, and Snohomish counties), you are charged a 1.1% Motor Vehicle Excise Tax. This is calculated using your vehicle's original MSRP and depreciates over 12 years.</li>
+        <li><strong>City TBD Fees:</strong> Local city Transportation Benefit Districts add flat fees to fund municipal road repairs, ranging from $20 to $50 (e.g., Vancouver and Seattle charge $50).</li>
+        <li><strong>EV & Hybrid Surcharges:</strong> Fully electric vehicles are charged a combined $225 annual fee ($150 EV fee + $75 electrification fee). Hybrids and PHEVs pay a $75 electrification fee.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in Washington?</h2>
+      <p>The Washington Department of Licensing (DOL) calculates your renewal using this formula:</p>
+      <ul>
+        <li><strong>Formula:</strong> (State Base Fees + Weight Fee) + (RTA Tax if applicable) + (City TBD Fee if applicable) + (EV Surcharge if applicable).</li>
+      </ul>
+      <p>If you are registering a newly purchased car, you must also pay a title transfer fee (roughly $35.50), plate fees ($50), and combined state/local sales tax. Washington allows you to deduct your trade-in allowance before calculating sales tax.</p>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Gas SUV Purchase</strong> (Seattle/RTA, $40k MSRP, No Trade)</td>
+            <td>$60 State Base + $50 TBD + $440 RTA + $85 Title/Plates + $4,120 Tax</td>
+            <td><strong>$4,755.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Used EV Renewal</strong> (Bellevue/RTA, Year 5, $45k original MSRP)</td>
+            <td>$60 State Base + $40 TBD + $225 EV Fee + $331 RTA</td>
+            <td><strong>$656.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Older Sedan Renewal</strong> (Rural County, Year 10+)</td>
+            <td>$60 State Base + No TBD + No RTA</td>
+            <td><strong>$60.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>Luxury Taxes:</strong> Vehicle purchases over strict luxury thresholds (often over $100k) may be subject to additional state luxury taxes depending on the transaction type.</li>
+        <li><strong>Subagent Fees:</strong> Using a private county subagent office instead of a direct DOL office to process your transaction may result in additional minor service/handling fees.</li>
+        <li><strong>Commercial Vehicles:</strong> Gross weight fees for heavy commercial and apportioned vehicles operate on a significantly higher schedule and are excluded from this standard passenger tool.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in Washington?</summary>
+        <p>The state's flat base fee sits around $60, but local RTA taxes, city TBD fees, and electric vehicle surcharges frequently push annual renewal bills to between $150 and $500+ per year.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in Washington?</summary>
+        <p>This calculator is highly accurate for passenger cars, SUVs, and light trucks. It does not cover snowmobiles, commercial trailers, or off-road ATVs, which have unique DOL fee structures.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in Washington change every year?</summary>
+        <p>Yes. If you live in the Sound Transit (RTA) district, your registration fee will decrease each year for the first 12 years because the RTA excise tax depreciates as the vehicle ages.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in Washington?</summary>
+        <p>Yes. By selecting "New Purchase / Ownership Transfer," the calculator integrates the $35.50 title ownership fee, the $50 new plate fee, and your localized motor vehicle sales tax.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in Washington?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The state's flat base fee sits around $60, but local RTA taxes, city TBD fees, and electric vehicle surcharges frequently push annual renewal bills to between $150 and $500+ per year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in Washington?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator is highly accurate for passenger cars, SUVs, and light trucks. It does not cover snowmobiles, commercial trailers, or off-road ATVs, which have unique DOL fee structures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in Washington change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you live in the Sound Transit (RTA) district, your registration fee will decrease each year for the first 12 years because the RTA excise tax depreciates as the vehicle ages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in Washington?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. By selecting \"New Purchase / Ownership Transfer,\" the calculator integrates the $35.50 title ownership fee, the $50 new plate fee, and your localized motor vehicle sales tax."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    weight: document.getElementById('waWeight'),
+    fuelType: document.getElementById('waFuelType'),
+    rta: document.getElementById('waRta'),
+    msrp: document.getElementById('waMsrp'),
+    age: document.getElementById('waAge'),
+    tbd: document.getElementById('waTbd'),
+    transactionType: document.getElementById('waTransactionType'),
+    purchasePrice: document.getElementById('waPurchasePrice'),
+    tradeIn: document.getElementById('waTradeIn'),
+    salesTax: document.getElementById('waSalesTax'),
+    
+    wrapRta: document.getElementById('wrapRta'),
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('waNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  // Washington State RTA Statutory Depreciation Schedule
+  // Year 1 (0) to Year 13+ (12)
+  const rtaDepreciation = [1.00, 0.90, 0.83, 0.75, 0.67, 0.59, 0.52, 0.44, 0.36, 0.28, 0.21, 0.15, 0.10];
+
+  function calculate() {
+    const wtFee = parseFloat(dom.weight.value) || 10;
+    const fType = dom.fuelType.value;
+    const isRta = (dom.rta.value === 'yes');
+    const msrp = parseFloat(dom.msrp.value) || 0;
+    const age = parseInt(dom.age.value) || 0;
+    const tbdFee = parseFloat(dom.tbd.value) || 0;
+    const tType = dom.transactionType.value;
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const taxRate = parseFloat(dom.salesTax.value) || 0;
+
+    const isPurchase = (tType === 'new_purchase');
+    
+    // Toggle Visibility
+    dom.wrapRta.style.display = isRta ? 'flex' : 'none';
+    dom.wrapPurchase.style.display = isPurchase ? 'block' : 'none';
+
+    // 1. State Base Fees (2026 adjusted rates)
+    // License Tab Fee ($43.25) + Filing Fee ($6.00) + License Svc ($0.75) + Plate Tech ($0.25)
+    const baseTabFee = 43.25;
+    const adminFees = 7.00; // 6.00 + 0.75 + 0.25
+    
+    // 2. Weight Fee
+    const weightFeeTotal = wtFee;
+
+    // 3. RTA Excise Tax (1.1% of depreciated MSRP)
+    let rtaTotal = 0;
+    let depFactor = 1.0;
+    if (isRta && msrp > 0) {
+        depFactor = rtaDepreciation[Math.min(age, 12)];
+        rtaTotal = (msrp * depFactor) * 0.011;
+    }
+
+    // 4. EV / Hybrid Road Surcharge
+    let evFee = 0;
+    if (fType === 'ev') evFee = 225.00; // $150 EV + $75 Electrification
+    else if (fType === 'hybrid') evFee = 75.00; // $75 Electrification
+
+    // 5. Title & Plate Fees
+    let titleFee = 0;
+    let plateFee = 0;
+    if (isPurchase) {
+        titleFee = 35.50; // Owner change fee (Approx)
+        plateFee = 50.00; // Standard new plates issuance
+    }
+
+    // 6. Sales Tax (Combined State + Local + Motor Vehicle Tax)
+    // WA allows trade-in deductions
+    let salesTaxTotal = 0;
+    let taxableBase = 0;
+    if (isPurchase) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        salesTaxTotal = taxableBase * (taxRate / 100);
+    }
+
+    // Grouping
+    const regAndLocalFees = baseTabFee + adminFees + weightFeeTotal + tbdFee + evFee + rtaTotal;
+    const taxesAndTitle = titleFee + plateFee + salesTaxTotal;
+    const grandTotal = regAndLocalFees + taxesAndTitle;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndLocalFees);
+    dom.resTax.textContent = formatUSD(taxesAndTitle);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow('Base State Tab Fee (RCW 46.17.350)', baseTabFee);
+    rows += addRow('State Filing, Admin & Tech Fees', adminFees);
+    rows += addRow('Vehicle Weight Fee', weightFeeTotal);
+
+    if (tbdFee > 0) {
+        rows += addRow('City Transportation Benefit District (TBD) Fee', tbdFee);
+    }
+
+    if (evFee > 0) {
+        let evLabel = fType === 'ev' ? 'BEV Electric Vehicle Surcharges' : 'Hybrid Electrification Surcharge';
+        rows += addRow(`${evLabel}`, evFee);
+    }
+    
+    if (rtaTotal > 0) {
+        rows += `<tr><td>RTA Motor Vehicle Excise Tax<br><small style="color:#78786C">(1.1% on depreciated MSRP valuation of $${formatUSD(msrp * depFactor)})</small></td><td class="t-right">${formatUSD(rtaTotal)}</td></tr>`;
+    }
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title / Owner Change', titleFee);
+    if (plateFee > 0) rows += addRow('New License Plates', plateFee);
+    
+    if (salesTaxTotal > 0) {
+        rows += `<tr><td>Vehicle Sales & Use Tax<br><small style="color:#78786C">(${taxRate.toFixed(3)}% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(salesTaxTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> The base fees integrate the recent statutory $1.50 filing fee increase. The RTA Tax utilizes the official Washington DOL Schedule A depreciation matrix. Your exact vehicle weight fee may vary slightly depending on the exact declared Gross Vehicle Weight (GVW) logged in the DOL system.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.weight, dom.fuelType, dom.rta, dom.msrp, dom.age, dom.tbd, 
+      dom.transactionType, dom.purchasePrice, dom.tradeIn, dom.salesTax
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pennsylvania Vehicle Registration Fee Calculator / Estimator 2026</title>
+<meta name="description" content="Estimate Pennsylvania vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<link rel="canonical" href="https://calculateit.net/pennsylvania-vehicle-registration-fee-calculator.html" />
+<meta property="og:title" content="Pennsylvania Vehicle Registration Fee Calculator 2026" />
+<meta property="og:description" content="Estimate Pennsylvania vehicle registration fees with our calculator. See fee breakdown and how much you pay." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://calculateit.net/pennsylvania-vehicle-registration-fee-calculator.html" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="/assets/css/tokens.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/pages.css" />
+<style>
+  .hero--calc{padding-top:5.5rem;padding-bottom:1.5rem}
+  .hero--calc h1{font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:.5rem;text-align:center;}
+  .hero--calc .lede{margin-bottom:1.25rem;font-size:1rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;}
+  
+  #pa-dmv-app{max-width:960px;margin:0 auto;padding:1.1rem;background:var(--card-bg,#FEFEFA);border-radius:26px;box-shadow:0 8px 30px rgba(60,60,50,.08);border:1px solid rgba(120,120,108,.15)}
+  #pa-dmv-app .dashboard-header{background:linear-gradient(135deg,rgba(93,112,82,.10),rgba(193,140,93,.10));border:1px solid rgba(93,112,82,.25);border-radius:20px;padding:1rem 1.1rem;margin-bottom:1rem}
+  #pa-dmv-app .dash-main{text-align:center;padding:.4rem 0 .8rem}
+  #pa-dmv-app .dash-label{font-size:.85rem;color:#78786C;text-transform:uppercase;letter-spacing:.06em}
+  #pa-dmv-app .dash-value{font-family:Fraunces,serif;font-weight:700;font-size:2.8rem;color:#5D7052;margin:.15rem 0}
+  #pa-dmv-app .dash-sub{font-size:.8rem;color:#78786C}
+  #pa-dmv-app .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;margin-top:.6rem}
+  #pa-dmv-app .dash-item{padding:.4rem .3rem;border-top:1px solid rgba(120,120,108,.2)}
+  #pa-dmv-app .dash-item .k{font-size:.78rem;color:#78786C;text-transform:uppercase;letter-spacing:.05em}
+  #pa-dmv-app .dash-item .v{font-family:Fraunces,serif;font-weight:700;font-size:1.3rem;color:#2C2C24;margin-top:.15rem}
+  
+  #pa-dmv-app h3.pa-title{font-family:Fraunces,serif;font-size:1.05rem;margin:.9rem 0 .5rem;color:#4A4A40}
+  #pa-dmv-app .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  #pa-dmv-app .fg{display:flex;flex-direction:column;margin-bottom:.6rem}
+  #pa-dmv-app .fg label{font-weight:600;font-size:.9rem;margin-bottom:.3rem;color:#2C2C24;}
+  #pa-dmv-app .fg input,#pa-dmv-app .fg select{padding:.6rem .75rem;border-radius:12px;border:1px solid rgba(120,120,108,.35);background:#FDFCF8;font:inherit;width:100%}
+  #pa-dmv-app .fg input:focus,#pa-dmv-app .fg select:focus{outline:2px solid #5D7052;outline-offset:1px}
+  #pa-dmv-app .fg .hint{font-size:.75rem;color:#78786C;margin-top:.25rem}
+  #pa-dmv-app .pre{position:relative}
+  #pa-dmv-app .pre span.prefix{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#78786C;font-size:.9rem}
+  #pa-dmv-app .pre input{padding-left:1.6rem}
+  
+  #pa-dmv-app .info-box{background:#fff;border:1px solid rgba(120,120,108,.2);border-radius:16px;padding:1rem;margin-top:1rem}
+  #pa-dmv-app table.pa-fees{width:100%;border-collapse:collapse}
+  #pa-dmv-app table.pa-fees th,#pa-dmv-app table.pa-fees td{padding:.6rem;border-bottom:1px dashed rgba(120,120,108,.25);font-size:.92rem;text-align:left}
+  #pa-dmv-app table.pa-fees .t-right{text-align:right}
+  #pa-dmv-app table.pa-fees tfoot td{border-top:2px solid #5D7052;border-bottom:0;font-weight:700;color:#5D7052;font-size:1.05rem}
+  
+  #pa-dmv-app .pa-note-box{background:rgba(193,140,93,.12);border:1px solid rgba(193,140,93,.3);border-radius:12px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#2C2C24;}
+  #pa-dmv-app .pa-note-box:empty{display:none;}
+  #pa-dmv-app .pa-disclaimer{font-size:.78rem;color:#78786C;margin-top:1rem;line-height:1.5;padding:0 .5rem;}
+  
+  @media (max-width: 700px) {
+    #pa-dmv-app .grid-row,
+    #pa-dmv-app .dash-grid { grid-template-columns: 1fr; }
+    #pa-dmv-app .dashboard-header { padding: 1.25rem; }
+    #pa-dmv-app .t-right { text-align: right; }
+    #pa-dmv-app .dash-value{font-size:2.4rem;}
+  }
+
+  .content-section{max-width:820px;margin:2rem auto}
+  .content-section h2{font-family:Fraunces,serif;font-size:1.5rem;margin:1.5rem 0 .6rem;color:#2C2C24}
+  .content-section p,.content-section li{line-height:1.65;color:#4A4A40}
+  .content-section ul{padding-left:1.2rem}
+  .fee-table-content{width:100%;border-collapse:collapse;margin-top:.5rem}
+  .fee-table-content th,.fee-table-content td{padding:.6rem;border-bottom:1px solid rgba(120,120,108,.25);text-align:left;font-size:.92rem}
+  details.faq{border:1px solid rgba(120,120,108,.25);border-radius:12px;padding:.7rem .9rem;margin-bottom:.6rem;background:#FDFCF8}
+  details.faq summary{font-weight:700;cursor:pointer;color:#2C2C24}
+  details.faq p{margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav" data-nav aria-label="Primary">
+    <a class="nav__brand" href="/index.html">
+      <span class="nav__logo" aria-hidden="true">C</span>
+      <span>CalculateIt</span>
+    </a>
+    <ul class="nav__list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn--primary nav__cta" href="/vehicles.html">All 50-state calculators</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile" data-nav-mobile data-open="false">
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/vehicles.html">Vehicle Hub</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero hero--calc">
+    <div class="container">
+      <h1>Pennsylvania Vehicle Registration Fee Calculator / Estimator 2026</h1>
+      <p class="lede">Buying a car or renewing your tags in the Keystone State? Our <strong>Pennsylvania vehicle registration fees calculator</strong> helps you estimate your total PennDOT checkout costs. Pennsylvania utilizes a flat-rate registration system for passenger cars, meaning your fee is not based on the vehicle's age or value. However, the state recently increased its base fees and introduced substantial Road User Charges for alternative fuel vehicles starting in 2025/2026. Use this tool to get an itemized breakdown of your local county fees, EV surcharges, and state taxes before you finalize your paperwork.</p>
+
+      <div id="pa-dmv-app">
+        
+        <div class="dashboard-header">
+          <div style="text-align:center; margin-bottom: 1rem;">
+            <span style="display:inline-block; background:rgba(93,112,82,.15); color:#5D7052; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:.3rem .8rem; border-radius:99px;">
+              No sign ups just fill in your details. 2026 updated.
+            </span>
+          </div>
+
+          <div class="dash-main">
+            <div class="dash-label">Total Estimated Due</div>
+            <div class="dash-value" id="resTotal">$0.00</div>
+            <div class="dash-sub">Estimated PennDOT checkout total</div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-item"><div class="k">Reg & PennDOT Fees</div><div class="v" id="resReg">$0.00</div></div>
+            <div class="dash-item"><div class="k">Title & Sales Tax</div><div class="v" id="resTax">$0.00</div></div>
+          </div>
+        </div>
+
+        <h3 class="pa-title">Vehicle & Taxing District Information</h3>
+        <div class="grid-row">
+          <div class="fg">
+            <label for="paVehicleType">Vehicle Type</label>
+            <select id="paVehicleType">
+              <option value="passenger">Passenger Car / SUV / Light Truck</option>
+              <option value="motorcycle">Motorcycle</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="paFuelType">Powertrain / Fuel Type</label>
+            <select id="paFuelType">
+              <option value="gas">Gas / Diesel / Standard Hybrid</option>
+              <option value="phev">Plug-in Hybrid (PHEV)</option>
+              <option value="ev">All-Electric Vehicle (BEV)</option>
+            </select>
+            <div class="hint">PennDOT assesses an annual Road User Charge on EVs/PHEVs.</div>
+          </div>
+        </div>
+
+        <div class="grid-row">
+          <div class="fg">
+            <label for="paRegTerm">Registration Term</label>
+            <select id="paRegTerm">
+              <option value="1">1 Year</option>
+              <option value="2">2 Years</option>
+            </select>
+            <div class="hint">PennDOT allows 2-year renewals for most vehicles.</div>
+          </div>
+          <div class="fg">
+            <label for="paCountyLocal">County Fee for Local Use</label>
+            <select id="paCountyLocal">
+              <option value="5">Participating County ($5.00/yr)</option>
+              <option value="0">Non-Participating County ($0.00/yr)</option>
+            </select>
+            <div class="hint">Many PA counties opt-in to a $5 local road fee.</div>
+          </div>
+        </div>
+
+        <h3 class="pa-title">Transaction Details</h3>
+        <div class="grid-row">
+          <div class="fg" style="grid-column: 1 / -1;">
+            <label for="paTransactionType">Transaction Type</label>
+            <select id="paTransactionType">
+              <option value="renewal">Annual Tag Renewal</option>
+              <option value="new_purchase">New Purchase (Title & Registration)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="wrapPurchase" style="display:none;">
+          <h3 class="pa-title">Purchase Details (Title & Sales Tax)</h3>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="paPurchasePrice">Actual Purchase Price</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="paPurchasePrice" value="25000.00" min="0" step="0.01">
+              </div>
+            </div>
+            <div class="fg">
+              <label for="paTradeIn">Trade-In Allowance</label>
+              <div class="pre">
+                <span class="prefix">$</span>
+                <input type="number" id="paTradeIn" value="5000.00" min="0" step="0.01">
+              </div>
+              <div class="hint">Trade-ins reduce your taxable purchase amount.</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="fg">
+              <label for="paSalesTax">Sales Tax Rate (%)</label>
+              <select id="paSalesTax">
+                <option value="6.000">6.0% (Most PA Counties)</option>
+                <option value="7.000">7.0% (Allegheny County)</option>
+                <option value="8.000">8.0% (Philadelphia)</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="paHasLien">Is there a Lien (Financing)?</label>
+              <select id="paHasLien">
+                <option value="no">No</option>
+                <option value="yes">Yes (Adds $36 Lien Fee)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="pa-title" style="margin-top: 1.5rem;">Itemized Fee Breakdown</h3>
+        <div class="info-box">
+          <table class="pa-fees">
+            <thead>
+              <tr><th>Fee Line Item</th><th class="t-right">Amount</th></tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot>
+              <tr><td>Total Estimated Due</td><td class="t-right" id="tableTotal">$0.00</td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="pa-note-box" id="paNote"></div>
+
+        <p class="pa-disclaimer">Estimate only. Pennsylvania charges a flat fee for registration regardless of the vehicle's age. This calculator assumes standard issue license plates, which are included in the initial registration cost. Annual state safety and emissions inspection fees are paid directly to certified mechanics, not PennDOT, and are therefore excluded.</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-section">
+      <h2>How much are vehicle registration fees in Pennsylvania?</h2>
+      <p>In 2026, registering a standard passenger car in Pennsylvania costs a flat rate of <strong>$48 per year</strong>. If you reside in one of the participating counties that levy a local use fee, you will pay <strong>$53 per year</strong>. However, if you drive an alternative fuel vehicle, your fee increases significantly to compensate for gas taxes. Fully electric vehicles (BEVs) are subject to an additional <strong>$250</strong> annual Road User Charge in 2026.</p>
+
+      <h2>What affects your Pennsylvania registration fee?</h2>
+      <ul>
+        <li><strong>Registration Term:</strong> Pennsylvania allows drivers to register passenger cars and motorcycles for one or two years. A two-year renewal exactly doubles your base fees, local fees, and EV surcharges.</li>
+        <li><strong>County Fee for Local Use:</strong> Many counties in PA opt into a $5 annual "Fee for Local Use" to fund local infrastructure.</li>
+        <li><strong>Alternative Fuel Surcharges:</strong> Starting in 2025 and increasing in 2026, fully electric vehicles (BEVs) are assessed a $250 annual fee, while plug-in hybrid electric vehicles (PHEVs) pay $63 (which is 25% of the EV rate).</li>
+        <li><strong>Sales Tax and Titling:</strong> When buying a car, you must pay a $72 Certificate of Title fee. The state sales tax is 6% for most counties, 7% for Allegheny County, and 8% for Philadelphia. If you finance the car, the state charges an additional $36 to record the lien.</li>
+      </ul>
+
+      <h2>How are registration fees calculated in Pennsylvania?</h2>
+      <p>PennDOT uses a flat-rate schedule rather than a system that depreciates based on the vehicle's age or MSRP.</p>
+      <ul>
+        <li><strong>Base:</strong> $48 (Passenger) or $25 (Motorcycle).</li>
+        <li><strong>Add-ons:</strong> $5 local county fee (if applicable) + $250 (EV) or $63 (PHEV).</li>
+        <li>If purchasing a vehicle, the checkout total includes the title fee ($72), any lien recording fees ($36 per lien), and sales tax on the net purchase price (after trade-in). First-time standard license plates are included in the cost of registration.</li>
+      </ul>
+
+      <h2>Estimated examples</h2>
+      <table class="fee-table-content">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Primary Drivers</th>
+            <th>Approx. Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>New Gas Sedan</strong> (1-Year Term, Allegheny County, $20,000 Net Price)</td>
+            <td>$48 Reg + $5 Local Fee + $72 Title + $1,400 Tax (7%)</td>
+            <td><strong>$1,525.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Electric Vehicle Renewal</strong> (2-Year Term, Participating County)</td>
+            <td>$96 Reg + $10 Local Fee + $500 EV Surcharge ($250 × 2)</td>
+            <td><strong>$606.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Motorcycle Renewal</strong> (1-Year Term, Non-Participating County)</td>
+            <td>$25 Flat Registration Rate</td>
+            <td><strong>$25.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What this calculator may not include</h2>
+      <ul>
+        <li><strong>Safety and Emissions Inspections:</strong> Pennsylvania requires annual safety inspections for all vehicles, and OBD-II emissions tests in roughly 25 metro counties. These tests cost approximately $47 to $100 per year and are paid directly to private licensed inspection stations, not to PennDOT.</li>
+        <li><strong>Retired Person Discount:</strong> Qualifying retirees can register their vehicle for a heavily reduced processing fee of $12 in lieu of the standard $48 registration fee.</li>
+        <li><strong>Specialty License Plates:</strong> Custom, special organization, or vanity license plates carry additional manufacturing and issuance fees (typically $14 to $40+).</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>How much is the car registration fee in Pennsylvania?</summary>
+        <p>A standard passenger car costs $48 per year to register in Pennsylvania, plus an optional $5 local county fee. Electric vehicles incur an additional $250 annual surcharge.</p>
+      </details>
+      <details class="faq"><summary>Is this calculator accurate for all vehicles in Pennsylvania?</summary>
+        <p>This calculator is accurate for standard passenger cars, SUVs, light non-commercial trucks, and motorcycles. It does not calculate fees for heavy commercial vehicles, motor homes (which are weight-based up to $158), or implements of husbandry.</p>
+      </details>
+      <details class="faq"><summary>Can registration fees in Pennsylvania change every year?</summary>
+        <p>While the base fee does not decrease as the vehicle ages, the state legislature occasionally adjusts flat fees for inflation. For example, the EV and PHEV surcharges are scheduled to be indexed to inflation starting in 2027.</p>
+      </details>
+      <details class="faq"><summary>Can I use this calculator for a new car and a used car in Pennsylvania?</summary>
+        <p>Yes. If you are registering a newly purchased car (new or used), select "New Purchase." This will correctly apply your $72 title fee, optional lien fees, and calculate your specific local sales tax based on the vehicle's purchase price.</p>
+      </details>
+
+      <p style="margin-top:2rem"><a class="btn btn--primary" href="/vehicles.html">See all 50-state vehicle calculators →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 CalculateIt.net · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is the car registration fee in Pennsylvania?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard passenger car costs $48 per year to register in Pennsylvania, plus an optional $5 local county fee. Electric vehicles incur an additional $250 annual surcharge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this calculator accurate for all vehicles in Pennsylvania?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator is accurate for standard passenger cars, SUVs, light non-commercial trucks, and motorcycles. It does not calculate fees for heavy commercial vehicles, motor homes, or implements of husbandry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can registration fees in Pennsylvania change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While the base fee does not decrease as the vehicle ages, the state legislature occasionally adjusts flat fees for inflation. For example, the EV and PHEV surcharges are scheduled to be indexed to inflation starting in 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for a new car and a used car in Pennsylvania?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you are registering a newly purchased car (new or used), select \"New Purchase.\" This will correctly apply your $72 title fee, optional lien fees, and calculate your specific local sales tax based on the vehicle's purchase price."
+      }
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  const dom = {
+    vehicleType: document.getElementById('paVehicleType'),
+    fuelType: document.getElementById('paFuelType'),
+    regTerm: document.getElementById('paRegTerm'),
+    countyLocal: document.getElementById('paCountyLocal'),
+    transactionType: document.getElementById('paTransactionType'),
+    purchasePrice: document.getElementById('paPurchasePrice'),
+    tradeIn: document.getElementById('paTradeIn'),
+    salesTax: document.getElementById('paSalesTax'),
+    hasLien: document.getElementById('paHasLien'),
+    
+    wrapPurchase: document.getElementById('wrapPurchase'),
+    
+    resTotal: document.getElementById('resTotal'),
+    resReg: document.getElementById('resReg'),
+    resTax: document.getElementById('resTax'),
+    breakdownBody: document.getElementById('breakdownBody'),
+    tableTotal: document.getElementById('tableTotal'),
+    note: document.getElementById('paNote')
+  };
+
+  const formatUSD = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(n) || 0);
+
+  function calculate() {
+    const vType = dom.vehicleType.value;
+    const fType = dom.fuelType.value;
+    const term = parseInt(dom.regTerm.value) || 1;
+    const localFeeAnn = parseInt(dom.countyLocal.value) || 0;
+    const tType = dom.transactionType.value;
+    const isLien = (dom.hasLien.value === 'yes');
+    const pPrice = parseFloat(dom.purchasePrice.value) || 0;
+    const tValue = parseFloat(dom.tradeIn.value) || 0;
+    const taxRate = parseFloat(dom.salesTax.value) || 0;
+
+    const isPurchase = (tType === 'new_purchase');
+    
+    // Toggle Visibility
+    dom.wrapPurchase.style.display = isPurchase ? 'block' : 'none';
+
+    // 1. Base Registration Fee (Updated to 2026 Act 89 rates)
+    let baseRegAnnual = (vType === 'motorcycle') ? 25.00 : 48.00;
+    const baseRegTotal = baseRegAnnual * term;
+
+    // 2. Alternative Fuel Surcharges (SB 656, 2026 rates)
+    let evFeeAnnual = 0;
+    if (fType === 'ev') evFeeAnnual = 250.00;
+    else if (fType === 'phev') evFeeAnnual = 63.00;
+    
+    const evFeeTotal = evFeeAnnual * term;
+
+    // 3. County Fee for Local Use
+    const localFeeTotal = localFeeAnn * term;
+
+    // 4. Title & Lien Fees
+    let titleFee = 0;
+    let lienFee = 0;
+    if (isPurchase) {
+        titleFee = 72.00; 
+        if (isLien) lienFee = 36.00; 
+    }
+
+    // 5. State & Local Sales Tax
+    let salesTaxTotal = 0;
+    let taxableBase = 0;
+    if (isPurchase) {
+        taxableBase = Math.max(0, pPrice - tValue);
+        salesTaxTotal = taxableBase * (taxRate / 100);
+    }
+
+    // Grouping
+    const regAndPennDotFees = baseRegTotal + localFeeTotal + evFeeTotal;
+    const taxesAndTitle = titleFee + lienFee + salesTaxTotal;
+    const grandTotal = regAndPennDotFees + taxesAndTitle;
+
+    // Update Dashboard
+    dom.resTotal.textContent = formatUSD(grandTotal);
+    dom.resReg.textContent = formatUSD(regAndPennDotFees);
+    dom.resTax.textContent = formatUSD(taxesAndTitle);
+    dom.tableTotal.textContent = formatUSD(grandTotal);
+
+    // Update Table Breakdown
+    let rows = '';
+    const addRow = (label, val) => `<tr><td>${label}</td><td class="t-right">${formatUSD(val)}</td></tr>`;
+    
+    rows += addRow(`Base PennDOT Registration Fee (${term} Year Term)`, baseRegTotal);
+    
+    if (localFeeTotal > 0) {
+        rows += addRow(`County Fee for Local Use ($${localFeeAnn}/yr × ${term} Years)`, localFeeTotal);
+    }
+
+    if (evFeeTotal > 0) {
+        let evLabel = fType === 'ev' ? 'BEV Road User Charge' : 'PHEV Road User Charge';
+        rows += addRow(`${evLabel} ($${evFeeAnnual}/yr × ${term} Years)`, evFeeTotal);
+    }
+    
+    if (titleFee > 0) rows += addRow('Certificate of Title Fee', titleFee);
+    if (lienFee > 0) rows += addRow('Lien Recording Fee', lienFee);
+    
+    if (salesTaxTotal > 0) {
+        rows += `<tr><td>State & County Sales Tax<br><small style="color:#78786C">(${taxRate.toFixed(3)}% on $${formatUSD(taxableBase)} net purchase)</small></td><td class="t-right">${formatUSD(salesTaxTotal)}</td></tr>`;
+    }
+
+    dom.breakdownBody.innerHTML = rows;
+
+    dom.note.innerHTML = `<strong>Accuracy note:</strong> The base fees and Road User Charges accurately reflect the changes implemented under PennDOT Act 89 adjustments and SB 656 taking effect for 2026 registrations. In Pennsylvania, a standard license plate is issued at no extra charge during the initial titling and registration process.`;
+    dom.note.style.display = 'block';
+  }
+
+  function init() {
+    [
+      dom.vehicleType, dom.fuelType, dom.regTerm, dom.countyLocal, 
+      dom.transactionType, dom.purchasePrice, dom.tradeIn, dom.salesTax, dom.hasLien
+    ].forEach((el) => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    calculate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
